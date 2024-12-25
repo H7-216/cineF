@@ -42,7 +42,7 @@ document.getElementById("converter-form").addEventListener("submit", function (e
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>87654321-4321-8765-4321-876543218765</string>
+    <string>00008030-000145310AD8802E</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
 </dict>
