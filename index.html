@@ -14,8 +14,31 @@
     <main>
         <section class="conversion">
             <h2>Convertissez vos fichiers rapidement !</h2>
-            <input type="file" id="fileInput">
+            
+            <!-- Input pour télécharger un fichier -->
+            <div class="input-container">
+                <label for="fileInput">Choisir un fichier :</label>
+                <input type="file" id="fileInput">
+            </div>
+
+            <!-- Menu déroulant pour choisir le format de conversion -->
+            <div class="input-container">
+                <label for="convertType">Choisir le format de conversion :</label>
+                <select id="convertType">
+                    <option value="pdf">PDF</option>
+                    <option value="jpg">JPG</option>
+                    <option value="png">PNG</option>
+                    <option value="txt">TXT</option>
+                    <option value="docx">DOCX</option>
+                    <option value="mp4">MP4</option>
+                    <!-- Ajoutez ici plus de formats si nécessaire -->
+                </select>
+            </div>
+
+            <!-- Bouton de conversion -->
             <button onclick="convertFile()">Convertir</button>
+
+            <!-- Affichage du statut -->
             <p id="status"></p>
         </section>
     </main>
