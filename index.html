@@ -1,39 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convertisseur ZIP vers APK ou API</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Convertisseur H7</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Convertisseur ZIP</h1>
-
-        <!-- Section pour convertir en APK -->
-        <div class="conversion">
-            <h2>Convertir ZIP en APK</h2>
-            <form id="apk-form">
-                <label for="apk-file-input">Sélectionnez un fichier ZIP :</label>
-                <input type="file" id="apk-file-input" accept=".zip" required>
-                <button type="submit">Convertir en APK</button>
-            </form>
-            <div id="apk-output-message"></div>
+    <header>
+        <div class="logo">
+            <img src="1.jpeg" alt="Logo Convertisseur H7" class="logo-img">
         </div>
+        <h1>Convertisseur H7</h1>
+    </header>
 
-        <!-- Section pour convertir en API -->
-        <div class="conversion">
-            <h2>Convertir ZIP en API</h2>
-            <form id="api-form">
-                <label for="api-file-input">Adresse du serveur (API) :</label>
-                <input type="text" id="server-address" placeholder="ex: 192.168.1.1" required>
-                <label for="api-file-input">Sélectionnez un fichier ZIP :</label>
-                <input type="file" id="api-file-input" accept=".zip" required>
-                <button type="submit">Convertir en API</button>
-            </form>
-            <div id="api-output-message"></div>
-        </div>
-    </div>
-    <script src="script.js"></script>
+    <main>
+        <section class="conversion">
+            <h2>Convertissez vos fichiers rapidement !</h2>
+            <input type="file" id="fileInput">
+            <button onclick="convertFile()">Convertir</button>
+            <p id="status"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Convertisseur H7. Tous droits réservés.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
