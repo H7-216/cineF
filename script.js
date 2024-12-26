@@ -13,7 +13,7 @@ document.getElementById("converter-form").addEventListener("submit", function (e
     const file = fileInput.files[0];
     const fileName = file.name.replace(".zip", ".mobileconfig");
 
-    // Contenu du profil de configuration
+    // Contenu du profil de configuration (corrigé avec VPNType)
     const profileContent = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -31,6 +31,18 @@ document.getElementById("converter-form").addEventListener("submit", function (e
             <string>00008030-000145310AD8802E</string>
             <key>PayloadDisplayName</key>
             <string>My VPN</string>
+            <key>UserDefinedName</key>
+            <string>MyVPN</string>
+            <key>VPNType</key>
+            <string>L2TP</string>
+            <key>RemoteAddress</key>
+            <string>vpn.example.com</string>
+            <key>AuthenticationMethod</key>
+            <string>Password</string>
+            <key>SharedSecret</key>
+            <string>votreSecretPartagé</string>
+            <key>Username</key>
+            <string>votreNomUtilisateur</string>
         </dict>
     </array>
     <key>PayloadDisplayName</key>
