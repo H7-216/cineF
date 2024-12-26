@@ -1,13 +1,20 @@
-// Afficher le formulaire de connexion et masquer l'inscription
-function showLoginForm() {
-    document.getElementById('loginSection').classList.remove('hidden');
-    document.getElementById('registerSection').classList.add('hidden');
-}
+// Fonction pour afficher une page spécifique
+function showPage(page) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.classList.add('hidden')); // Masque toutes les pages
+    document.getElementById(page).classList.remove('hidden'); // Affiche la page demandée
 
-// Afficher le formulaire d'inscription et masquer la connexion
-function showRegisterForm() {
-    document.getElementById('registerSection').classList.remove('hidden');
-    document.getElementById('loginSection').classList.add('hidden');
+    // Met à jour les liens de navigation
+    document.getElementById('homeLink').classList.add('hidden');
+    document.getElementById('shopLink').classList.add('hidden');
+    document.getElementById('logoutLink').classList.add('hidden');
+
+    if (page === 'home') {
+        document.getElementById('homeLink').classList.remove('hidden');
+    } else if (page === 'shop') {
+        document.getElementById('shopLink').classList.remove('hidden');
+        document.getElementById('logoutLink').classList.remove('hidden');
+    }
 }
 
 // Fonction de connexion
@@ -15,27 +22,24 @@ function loginUser() {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
-    // Si l'utilisateur est "admin"
     if (username === "admin" && password === "admin") {
         alert("Bienvenue Admin !");
-        document.getElementById('adminSection').classList.remove('hidden');
-        document.getElementById('mainContent').classList.add('hidden');
+        showPage('admin');
     } else {
-        // Vérifier si l'utilisateur existe dans localStorage
         let users = JSON.parse(localStorage.getItem("users")) || [];
         let user = users.find(u => u.email === username && u.password === password);
 
         if (user) {
             alert("Connexion réussie !");
-            document.getElementById('productsSection').classList.remove('hidden');
-            document.getElementById('mainContent').classList.add('hidden');
+            showPage('shop');
+            displayProducts();
         } else {
             alert("Identifiants incorrects.");
         }
     }
 }
 
-// Inscrire un nouvel utilisateur
+// Fonction d'inscription
 function registerUser() {
     const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
@@ -44,41 +48,36 @@ function registerUser() {
     users.push({ email, password });
     localStorage.setItem("users", JSON.stringify(users));
 
-    alert("Inscription réussie ! Vous pouvez maintenant vous connecter.");
-    showLoginForm();
+    alert("Inscription réussie !");
+    showPage('login');
 }
 
-// Fonction d'ajout de produit (accessible uniquement par l'admin)
-function addProduct() {
-    const productName = document.getElementById('productName').value;
-    const productPrice = document.getElementById('productPrice').value;
-    const productImage = document.getElementById('productImage').files[0];
+// Fonction d'ajout de produit à la boutique
+function addProductToStore() {
+    const name = document.getElementById('productName').value;
+    const price = document.getElementById('productPrice').value;
+    const image = document.getElementById('productImage').files[0];
 
-    if (productName && productPrice && productImage) {
+    if (name && price && image) {
         const reader = new FileReader();
-        reader.onload = function(e) {
-            const newProduct = {
-                name: productName,
-                price: productPrice,
-                image: e.target.result
-            };
-
+        reader.onload = function (e) {
+            const newProduct = { name, price, image: e.target.result };
             let products = JSON.parse(localStorage.getItem("products")) || [];
             products.push(newProduct);
             localStorage.setItem("products", JSON.stringify(products));
 
-            alert("Produit ajouté !");
+            alert("Produit ajouté avec succès !");
             displayProducts();
         };
-        reader.readAsDataURL(productImage);
+        reader.readAsDataURL(image);
     } else {
         alert("Veuillez remplir tous les champs.");
     }
 }
 
-// Afficher les produits dans la boutique
+// Afficher les produits de la boutique
 function displayProducts() {
-    let products = JSON.parse(localStorage.getItem("products")) || [];
+    const products = JSON.parse(localStorage.getItem("products")) || [];
     const productList = document.getElementById('productList');
     productList.innerHTML = "";
 
@@ -93,15 +92,7 @@ function displayProducts() {
     });
 }
 
-// Déconnexion de l'admin ou utilisateur
+// Déconnexion
 function logout() {
-    document.getElementById('adminSection').classList.add('hidden');
-    document.getElementById('productsSection').classList.add('hidden');
-    document.getElementById('mainContent').classList.remove('hidden');
-    alert("Déconnexion réussie !");
+    showPage('home');
 }
-
-// Charger les produits au démarrage de la page
-document.addEventListener("DOMContentLoaded", () => {
-    displayProducts();
-});
