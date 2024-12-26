@@ -3,18 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuration VPN Simplifiée</title>
+    <title>Convertisseur ZIP vers APK ou API</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Générateur de Profil VPN iOS</h1>
-        <form id="vpn-form">
-            <label for="server-address">Adresse du serveur VPN :</label>
-            <input type="text" id="server-address" placeholder="ex: 192.168.1.1" required>
-            <button type="submit">Générer le Profil</button>
-        </form>
-        <div id="output-message"></div>
+        <h1>Convertisseur ZIP</h1>
+
+        <!-- Section pour convertir en APK -->
+        <div class="conversion">
+            <h2>Convertir ZIP en APK</h2>
+            <form id="apk-form">
+                <label for="apk-file-input">Sélectionnez un fichier ZIP :</label>
+                <input type="file" id="apk-file-input" accept=".zip" required>
+                <button type="submit">Convertir en APK</button>
+            </form>
+            <div id="apk-output-message"></div>
+        </div>
+
+        <!-- Section pour convertir en API -->
+        <div class="conversion">
+            <h2>Convertir ZIP en API</h2>
+            <form id="api-form">
+                <label for="api-file-input">Adresse du serveur (API) :</label>
+                <input type="text" id="server-address" placeholder="ex: 192.168.1.1" required>
+                <label for="api-file-input">Sélectionnez un fichier ZIP :</label>
+                <input type="file" id="api-file-input" accept=".zip" required>
+                <button type="submit">Convertir en API</button>
+            </form>
+            <div id="api-output-message"></div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
