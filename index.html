@@ -3,52 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boutique en ligne - Simulation</title>
+    <title>Boutique en ligne</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
+        <nav>
+            <a href="#" id="homeLink" onclick="showPage('home')">Accueil</a>
+            <a href="#" id="shopLink" onclick="showPage('shop')" class="hidden">Boutique</a>
+            <a href="#" id="loginLink" onclick="showPage('login')">Se connecter</a>
+            <a href="#" id="logoutLink" onclick="logout()" class="hidden">Déconnexion</a>
+        </nav>
         <h1>Boutique en ligne - Simulation</h1>
     </header>
 
-    <main id="mainContent">
-        <!-- Section de connexion/inscription -->
-        <section id="authSection" class="center">
-            <div id="loginSection">
-                <h2>Se connecter</h2>
-                <input type="text" id="loginUsername" placeholder="Nom d'utilisateur" required>
-                <input type="password" id="loginPassword" placeholder="Mot de passe" required>
-                <button onclick="loginUser()">Se connecter</button>
-                <p>Pas encore inscrit ? <a href="#" onclick="showRegisterForm()">Créer un compte</a></p>
-            </div>
+    <!-- Page d'accueil (Connexion/Inscription) -->
+    <section id="home" class="page active">
+        <div id="loginPage">
+            <h2>Se connecter</h2>
+            <input type="text" id="loginUsername" placeholder="Nom d'utilisateur">
+            <input type="password" id="loginPassword" placeholder="Mot de passe">
+            <button onclick="loginUser()">Se connecter</button>
+            <p>Pas encore inscrit ? <a href="#" onclick="showPage('register')">Créer un compte</a></p>
+        </div>
 
-            <!-- Formulaire d'inscription -->
-            <div id="registerSection" class="hidden">
-                <h2>Inscription</h2>
-                <input type="email" id="registerEmail" placeholder="Entrez votre email" required>
-                <input type="password" id="registerPassword" placeholder="Entrez votre mot de passe" required>
-                <button onclick="registerUser()">S'inscrire</button>
-                <p>Déjà inscrit ? <a href="#" onclick="showLoginForm()">Se connecter</a></p>
-            </div>
-        </section>
+        <div id="registerPage" class="hidden">
+            <h2>Inscription</h2>
+            <input type="email" id="registerEmail" placeholder="Entrez votre email">
+            <input type="password" id="registerPassword" placeholder="Entrez votre mot de passe">
+            <button onclick="registerUser()">S'inscrire</button>
+            <p>Déjà inscrit ? <a href="#" onclick="showPage('login')">Se connecter</a></p>
+        </div>
+    </section>
 
-        <!-- Section Admin (affichée après connexion admin) -->
-        <section id="adminSection" class="hidden">
-            <h2>Admin - Ajouter un produit</h2>
-            <input type="text" id="productName" placeholder="Nom du produit" required>
-            <input type="number" id="productPrice" placeholder="Prix du produit" required>
-            <input type="file" id="productImage" accept="image/*" required>
-            <button onclick="addProduct()">Ajouter le produit</button>
-            <button onclick="logout()">Déconnexion</button>
-        </section>
+    <!-- Page boutique -->
+    <section id="shop" class="page hidden">
+        <h2>Produits disponibles</h2>
+        <div id="productList" class="product-list"></div>
+        <button onclick="addProduct()">Ajouter un produit (Admin)</button>
+    </section>
 
-        <!-- Section de la boutique pour les utilisateurs connectés -->
-        <section id="productsSection" class="hidden">
-            <h2>Produits disponibles</h2>
-            <div id="productList" class="product-list"></div>
-            <button onclick="logout()">Déconnexion</button>
-        </section>
-    </main>
+    <!-- Page admin (gestion des produits) -->
+    <section id="admin" class="page hidden">
+        <h2>Admin - Ajouter un produit</h2>
+        <input type="text" id="productName" placeholder="Nom du produit">
+        <input type="number" id="productPrice" placeholder="Prix du produit">
+        <input type="file" id="productImage" accept="image/*">
+        <button onclick="addProductToStore()">Ajouter le produit</button>
+    </section>
 
     <footer>
         <p>&copy; 2024 Boutique en ligne. Tous droits réservés.</p>
