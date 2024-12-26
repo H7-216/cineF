@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convertisseur ZIP vers Profil iOS</title>
+    <title>Configuration VPN Simplifiée</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Convertisseur ZIP vers Profil iOS</h1>
-        <form id="converter-form">
-            <label for="file-input">Sélectionnez un fichier ZIP :</label>
-            <input type="file" id="file-input" accept=".zip" required>
-            <button type="submit">Générer Profil iOS</button>
+        <h1>Générateur de Profil VPN iOS</h1>
+        <form id="vpn-form">
+            <label for="server-address">Adresse du serveur VPN :</label>
+            <input type="text" id="server-address" placeholder="ex: 192.168.1.1" required>
+            <button type="submit">Générer le Profil</button>
         </form>
         <div id="output-message"></div>
     </div>
