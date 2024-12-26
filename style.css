@@ -8,6 +8,7 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f0f0;
     color: #333;
+    line-height: 1.5;
 }
 
 header {
@@ -17,49 +18,48 @@ header {
     text-align: center;
 }
 
-main {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
+nav {
+    margin-bottom: 20px;
 }
 
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }
 
-section {
-    width: 100%;
-    max-width: 400px;
-    background-color: white;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+nav a:hover {
+    text-decoration: underline;
 }
 
-.hidden {
+h1 {
+    margin-top: 0;
+}
+
+.page {
     display: none;
 }
 
+.page.active {
+    display: block;
+}
+
 input {
-    width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    width: 100%;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 button {
-    width: 100%;
     padding: 10px;
-    margin: 10px 0;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
+    width: 100%;
     cursor: pointer;
 }
 
@@ -67,17 +67,8 @@ button:hover {
     background-color: #45a049;
 }
 
-a {
-    color: #4CAF50;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-#productsSection {
-    margin-top: 30px;
+.hidden {
+    display: none;
 }
 
 .product-list {
@@ -88,9 +79,9 @@ a:hover {
 
 .product-list div {
     width: 200px;
-    margin: 10px;
     padding: 10px;
-    background-color: #fff;
+    margin: 10px;
+    background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -104,8 +95,8 @@ a:hover {
 footer {
     background-color: #333;
     color: white;
-    padding: 10px;
     text-align: center;
+    padding: 10px;
     position: fixed;
     bottom: 0;
     width: 100%;
