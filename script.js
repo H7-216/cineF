@@ -1,18 +1,21 @@
 function convertFile() {
     const fileInput = document.getElementById('fileInput');
+    const convertType = document.getElementById('convertType');
     const status = document.getElementById('status');
 
     if (fileInput.files.length === 0) {
         status.textContent = 'Veuillez sélectionner un fichier.';
         status.style.color = 'red';
     } else {
-        // Simuler la conversion
-        status.textContent = 'Conversion en cours...';
+        const selectedFormat = convertType.value;
+        
+        // Afficher un message de "conversion en cours"
+        status.textContent = `Conversion en ${selectedFormat} en cours...`;
         status.style.color = 'green';
 
-        // Vous pouvez implémenter un convertisseur réel ici
+        // Simuler une conversion
         setTimeout(() => {
-            status.textContent = 'Fichier converti avec succès !';
-        }, 2000);
+            status.textContent = `Fichier converti avec succès en ${selectedFormat}!`;
+        }, 3000); // Simuler un délai de conversion de 3 secondes
     }
 }
