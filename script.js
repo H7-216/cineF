@@ -1,12 +1,10 @@
-// Utilisation de localStorage pour simuler la gestion des utilisateurs et des produits
-
-// Afficher ou masquer le formulaire de connexion
+// Afficher le formulaire de connexion et masquer l'inscription
 function showLoginForm() {
     document.getElementById('loginSection').classList.remove('hidden');
     document.getElementById('registerSection').classList.add('hidden');
 }
 
-// Afficher ou masquer le formulaire d'inscription
+// Afficher le formulaire d'inscription et masquer la connexion
 function showRegisterForm() {
     document.getElementById('registerSection').classList.remove('hidden');
     document.getElementById('loginSection').classList.add('hidden');
@@ -17,18 +15,20 @@ function loginUser() {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
+    // Si l'utilisateur est "admin"
     if (username === "admin" && password === "admin") {
         alert("Bienvenue Admin !");
         document.getElementById('adminSection').classList.remove('hidden');
         document.getElementById('mainContent').classList.add('hidden');
     } else {
+        // Vérifier si l'utilisateur existe dans localStorage
         let users = JSON.parse(localStorage.getItem("users")) || [];
         let user = users.find(u => u.email === username && u.password === password);
 
         if (user) {
             alert("Connexion réussie !");
-            document.getElementById('mainContent').classList.remove('hidden');
-            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('productsSection').classList.remove('hidden');
+            document.getElementById('mainContent').classList.add('hidden');
         } else {
             alert("Identifiants incorrects.");
         }
@@ -39,26 +39,16 @@ function loginUser() {
 function registerUser() {
     const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
-    
+
     let users = JSON.parse(localStorage.getItem("users")) || [];
     users.push({ email, password });
     localStorage.setItem("users", JSON.stringify(users));
-    
+
     alert("Inscription réussie ! Vous pouvez maintenant vous connecter.");
-    hideRegisterForm();
+    showLoginForm();
 }
 
-// Masquer le formulaire d'inscription
-function hideRegisterForm() {
-    document.getElementById('registerSection').classList.add('hidden');
-}
-
-// Masquer le formulaire de connexion
-function hideLoginForm() {
-    document.getElementById('loginSection').classList.add('hidden');
-}
-
-// Fonction d'ajout de produit (accessible seulement à l'admin)
+// Fonction d'ajout de produit (accessible uniquement par l'admin)
 function addProduct() {
     const productName = document.getElementById('productName').value;
     const productPrice = document.getElementById('productPrice').value;
@@ -103,13 +93,15 @@ function displayProducts() {
     });
 }
 
-// Déconnexion de l'admin
+// Déconnexion de l'admin ou utilisateur
 function logout() {
     document.getElementById('adminSection').classList.add('hidden');
+    document.getElementById('productsSection').classList.add('hidden');
     document.getElementById('mainContent').classList.remove('hidden');
     alert("Déconnexion réussie !");
 }
 
+// Charger les produits au démarrage de la page
 document.addEventListener("DOMContentLoaded", () => {
     displayProducts();
 });
