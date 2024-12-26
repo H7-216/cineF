@@ -3,48 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convertisseur H7</title>
+    <title>Boutique en ligne - Simulation</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Convertisseur H7</h1>
+        <h1>Boutique en ligne - Simulation</h1>
+        <nav>
+            <button onclick="showLoginForm()">Se connecter</button>
+            <button onclick="showRegisterForm()">S'inscrire</button>
+        </nav>
     </header>
 
-    <main>
-        <section class="conversion">
-            <h2>Convertissez vos fichiers rapidement !</h2>
-            
-            <!-- Input pour télécharger un fichier -->
-            <div class="input-container">
-                <label for="fileInput">Choisir un fichier :</label>
-                <input type="file" id="fileInput">
-            </div>
+    <main id="mainContent">
+        <!-- Zone principale avec produits -->
+        <section id="productsSection">
+            <h2>Produits disponibles</h2>
+            <div id="productList"></div>
+        </section>
 
-            <!-- Menu déroulant pour choisir le format de conversion -->
-            <div class="input-container">
-                <label for="convertType">Choisir le format de conversion :</label>
-                <select id="convertType">
-                    <option value="pdf">PDF</option>
-                    <option value="jpg">JPG</option>
-                    <option value="png">PNG</option>
-                    <option value="txt">TXT</option>
-                    <option value="docx">DOCX</option>
-                    <option value="mp4">MP4</option>
-                    <!-- Ajoutez ici plus de formats si nécessaire -->
-                </select>
-            </div>
+        <!-- Formulaire d'inscription -->
+        <section id="registerSection" class="hidden">
+            <h2>Inscription</h2>
+            <input type="email" id="registerEmail" placeholder="Entrez votre email">
+            <input type="password" id="registerPassword" placeholder="Entrez votre mot de passe">
+            <button onclick="registerUser()">S'inscrire</button>
+            <button onclick="hideRegisterForm()">Annuler</button>
+        </section>
 
-            <!-- Bouton de conversion -->
-            <button onclick="convertFile()">Convertir</button>
+        <!-- Formulaire de connexion -->
+        <section id="loginSection" class="hidden">
+            <h2>Connexion</h2>
+            <input type="text" id="loginUsername" placeholder="Nom d'utilisateur">
+            <input type="password" id="loginPassword" placeholder="Mot de passe">
+            <button onclick="loginUser()">Se connecter</button>
+            <button onclick="hideLoginForm()">Annuler</button>
+        </section>
 
-            <!-- Affichage du statut -->
-            <p id="status"></p>
+        <!-- Administration -->
+        <section id="adminSection" class="hidden">
+            <h2>Admin - Ajouter un produit</h2>
+            <input type="text" id="productName" placeholder="Nom du produit">
+            <input type="number" id="productPrice" placeholder="Prix du produit">
+            <input type="file" id="productImage" accept="image/*">
+            <button onclick="addProduct()">Ajouter le produit</button>
+            <button onclick="logout()">Déconnexion</button>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Convertisseur H7. Tous droits réservés.</p>
+        <p>&copy; 2024 Boutique en ligne. Tous droits réservés.</p>
     </footer>
 
     <script src="scripts.js"></script>
