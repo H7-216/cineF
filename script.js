@@ -1,60 +1,115 @@
-// Fonction pour afficher les détails du fichier
-function handleFile() {
-    const fileInput = document.getElementById('fileInput');
-    const fileDetails = document.getElementById('fileDetails');
-    const fileName = fileInput.files[0] ? fileInput.files[0].name : "Aucun fichier choisi";
+// Utilisation de localStorage pour simuler la gestion des utilisateurs et des produits
 
-    fileDetails.innerHTML = `<p>Fichier sélectionné : ${fileName}</p>`;
+// Afficher ou masquer le formulaire de connexion
+function showLoginForm() {
+    document.getElementById('loginSection').classList.remove('hidden');
+    document.getElementById('registerSection').classList.add('hidden');
 }
 
-// Fonction de conversion
-function convertFile() {
-    const fileInput = document.getElementById('fileInput');
-    const convertType = document.getElementById('convertType');
-    const status = document.getElementById('status');
-    
-    // Vérifier qu'un fichier a bien été sélectionné
-    if (fileInput.files.length === 0) {
-        status.textContent = 'Veuillez sélectionner un fichier.';
-        status.style.color = 'red';
-        return;
+// Afficher ou masquer le formulaire d'inscription
+function showRegisterForm() {
+    document.getElementById('registerSection').classList.remove('hidden');
+    document.getElementById('loginSection').classList.add('hidden');
+}
+
+// Fonction de connexion
+function loginUser() {
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+
+    if (username === "admin" && password === "admin") {
+        alert("Bienvenue Admin !");
+        document.getElementById('adminSection').classList.remove('hidden');
+        document.getElementById('mainContent').classList.add('hidden');
+    } else {
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let user = users.find(u => u.email === username && u.password === password);
+
+        if (user) {
+            alert("Connexion réussie !");
+            document.getElementById('mainContent').classList.remove('hidden');
+            document.getElementById('loginSection').classList.add('hidden');
+        } else {
+            alert("Identifiants incorrects.");
+        }
     }
-
-    const file = fileInput.files[0];
-    const selectedFormat = convertType.value;
-    
-    // Afficher un message de conversion en cours
-    status.textContent = `Conversion en ${selectedFormat} en cours...`;
-    status.style.color = 'green';
-    
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        const image = new Image();
-        image.src = event.target.result;
-
-        image.onload = function() {
-            // Créer un canvas pour la conversion de l'image
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = image.width;
-            canvas.height = image.height;
-
-            // Dessiner l'image dans le canvas
-            ctx.drawImage(image, 0, 0);
-
-            // Convertir l'image dans le format sélectionné (PNG ou JPEG)
-            const convertedDataUrl = canvas.toDataURL(`image/${selectedFormat}`);
-
-            // Créer un lien pour télécharger l'image convertie
-            const link = document.createElement('a');
-            link.href = convertedDataUrl;
-            link.download = `converted.${selectedFormat}`;
-            link.click();
-
-            // Afficher un message de succès
-            status.textContent = `Fichier converti avec succès en ${selectedFormat}!`;
-        };
-    };
-    
-    reader.readAsDataURL(file); // Lire le fichier comme une URL de données
 }
+
+// Inscrire un nouvel utilisateur
+function registerUser() {
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+    
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    users.push({ email, password });
+    localStorage.setItem("users", JSON.stringify(users));
+    
+    alert("Inscription réussie ! Vous pouvez maintenant vous connecter.");
+    hideRegisterForm();
+}
+
+// Masquer le formulaire d'inscription
+function hideRegisterForm() {
+    document.getElementById('registerSection').classList.add('hidden');
+}
+
+// Masquer le formulaire de connexion
+function hideLoginForm() {
+    document.getElementById('loginSection').classList.add('hidden');
+}
+
+// Fonction d'ajout de produit (accessible seulement à l'admin)
+function addProduct() {
+    const productName = document.getElementById('productName').value;
+    const productPrice = document.getElementById('productPrice').value;
+    const productImage = document.getElementById('productImage').files[0];
+
+    if (productName && productPrice && productImage) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const newProduct = {
+                name: productName,
+                price: productPrice,
+                image: e.target.result
+            };
+
+            let products = JSON.parse(localStorage.getItem("products")) || [];
+            products.push(newProduct);
+            localStorage.setItem("products", JSON.stringify(products));
+
+            alert("Produit ajouté !");
+            displayProducts();
+        };
+        reader.readAsDataURL(productImage);
+    } else {
+        alert("Veuillez remplir tous les champs.");
+    }
+}
+
+// Afficher les produits dans la boutique
+function displayProducts() {
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    const productList = document.getElementById('productList');
+    productList.innerHTML = "";
+
+    products.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.price}€</p>
+        `;
+        productList.appendChild(productDiv);
+    });
+}
+
+// Déconnexion de l'admin
+function logout() {
+    document.getElementById('adminSection').classList.add('hidden');
+    document.getElementById('mainContent').classList.remove('hidden');
+    alert("Déconnexion réussie !");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    displayProducts();
+});
