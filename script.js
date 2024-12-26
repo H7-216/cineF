@@ -1,19 +1,16 @@
-document.getElementById("converter-form").addEventListener("submit", function (event) {
+document.getElementById("vpn-form").addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const fileInput = document.getElementById("file-input");
+    const serverAddress = document.getElementById("server-address").value;
     const outputMessage = document.getElementById("output-message");
 
-    if (!fileInput.files[0]) {
-        outputMessage.textContent = "Veuillez sélectionner un fichier ZIP.";
+    if (!serverAddress) {
+        outputMessage.textContent = "Veuillez entrer une adresse de serveur VPN.";
         outputMessage.style.color = "red";
         return;
     }
 
-    const file = fileInput.files[0];
-    const fileName = file.name.replace(".zip", ".mobileconfig");
-
-    // Contenu du profil de configuration (corrigé avec VPNType)
+    // Contenu du profil VPN avec des valeurs par défaut
     const profileContent = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -26,54 +23,54 @@ document.getElementById("converter-form").addEventListener("submit", function (e
             <key>PayloadVersion</key>
             <integer>1</integer>
             <key>PayloadIdentifier</key>
-            <string>com.example.vpn</string>
+            <string>com.simple.vpn</string>
             <key>PayloadUUID</key>
             <string>00008030-000145310AD8802E</string>
             <key>PayloadDisplayName</key>
-            <string>My VPN</string>
+            <string>Mon VPN Simplifié</string>
             <key>UserDefinedName</key>
-            <string>MyVPN</string>
+            <string>MonVPN</string>
             <key>VPNType</key>
             <string>L2TP</string>
             <key>RemoteAddress</key>
-            <string>vpn.example.com</string>
+            <string>192.168.1.220</string>
             <key>AuthenticationMethod</key>
             <string>Password</string>
             <key>SharedSecret</key>
-            <string>votreSecretPartagé</string>
+            <string>cleSecreteDefaut</string>
             <key>Username</key>
-            <string>votreNomUtilisateur</string>
+            <string>utilisateurParDefaut</string>
+            <key>Password</key>
+            <string>motDePasseParDefaut</string>
         </dict>
     </array>
     <key>PayloadDisplayName</key>
-    <string>My Profile</string>
+    <string>Profil VPN</string>
     <key>PayloadIdentifier</key>
-    <string>com.example.profile</string>
+    <string>com.simple.profile</string>
     <key>PayloadOrganization</key>
-    <string>My Organization</string>
+    <string>Mon Organisation</string>
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>00008030-000145310AD8802E</string>
+    <string>87654321-4321-8765-4321-876543218765</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
 </dict>
 </plist>`;
 
-    // Créer un fichier Blob
+    // Génération du fichier mobileconfig
     const blob = new Blob([profileContent], { type: "application/x-apple-aspen-config" });
-
-    // Créer un lien de téléchargement
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = fileName;
+    link.download = "profil_vpn.mobileconfig";
 
-    // Ajouter le lien temporairement au DOM et le déclencher
+    // Simule un clic pour télécharger le fichier
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 
     // Afficher un message de succès
-    outputMessage.textContent = `Le fichier ${fileName} a été généré avec succès.`;
+    outputMessage.textContent = "Le fichier de configuration VPN a été généré avec succès.";
     outputMessage.style.color = "green";
 });
