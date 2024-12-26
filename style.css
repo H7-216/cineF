@@ -1,84 +1,69 @@
-/* Global */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
     text-align: center;
+    background-color: #f0f0f0;
 }
 
-/* Header */
 header {
-    background-color: #ff6347; /* Couleur de fond */
-    color: white;
+    background-color: #4CAF50;
     padding: 20px;
+    color: white;
 }
 
-/* Titre */
 h1 {
     margin: 0;
-    font-size: 28px;
-    font-weight: bold;
 }
 
-/* Section Conversion */
-.conversion {
-    background-color: #ffffff;
-    padding: 30px;
-    margin: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    margin: 0;
-    font-size: 24px;
-}
-
-/* Input Containers */
-.input-container {
-    margin-bottom: 20px;
-    text-align: left;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-label {
-    font-size: 16px;
-    margin-bottom: 5px;
-    display: block;
-}
-
-input[type="file"],
-select {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-button {
+nav button {
+    margin: 10px;
     padding: 10px 20px;
-    background-color: #ff6347;
-    color: white;
+    background-color: #f1f1f1;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
 }
 
 button:hover {
-    background-color: #ff4500;
+    background-color: #ddd;
 }
 
-/* Footer */
+.hidden {
+    display: none;
+}
+
+#productsSection {
+    margin-top: 20px;
+}
+
+#productList {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#productList div {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    background-color: white;
+}
+
+#productList img {
+    max-width: 100%;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    width: 80%;
+    max-width: 300px;
+}
+
 footer {
+    margin-top: 20px;
     background-color: #333;
     color: white;
     padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
