@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete Movie Collection</title>
+  <title>Dynamic Movie Collection</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -50,7 +50,7 @@
 <body>
 
 <header>
-  <h1>Complete Movie Collection</h1>
+  <h1>Dynamic Movie Collection</h1>
 </header>
 
 <div class="container" id="movies-container">
@@ -58,105 +58,63 @@
 </div>
 
 <script>
-  const movies = [
-    // JSON complet des films et séries
-    {
-      "Title": "Avatar",
-      "Year": "2009",
-      "Genre": "Action, Adventure, Fantasy",
-      "Director": "James Cameron",
-      "Poster": "http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg"
-    },
-    {
-      "Title": "I Am Legend",
-      "Year": "2007",
-      "Genre": "Drama, Horror, Sci-Fi",
-      "Director": "Francis Lawrence",
-      "Poster": "http://ia.media-imdb.com/images/M/MV5BMTU4NzMyNDk1OV5BMl5BanBnXkFtZTcwOTEwMzU1MQ@@._V1_SX300.jpg"
-    },
-    {
-      "Title": "300",
-      "Year": "2006",
-      "Genre": "Action, Drama, Fantasy",
-      "Director": "Zack Snyder",
-      "Poster": "http://ia.media-imdb.com/images/M/MV5BMjAzNTkzNjcxNl5BMl5BanBnXkFtZTYwNDA4NjE3._V1_SX300.jpg"
-    },
-    {
-      "Title": "The Avengers",
-      "Year": "2012",
-      "Genre": "Action, Sci-Fi, Thriller",
-      "Director": "Joss Whedon",
-      "Poster": "http://ia.media-imdb.com/images/M/MV5BMTk2NTI1MTU4N15BMl5BanBnXkFtZTcwODg0OTY0Nw@@._V1_SX300.jpg"
-    },
-    {
-      "Title": "The Wolf of Wall Street",
-      "Year": "2013",
-      "Genre": "Biography, Comedy, Crime",
-      "Director": "Martin Scorsese",
-      "Poster": "http://ia.media-imdb.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_SX300.jpg"
-    },
-    {
-      "Title": "Interstellar",
-      "Year": "2014",
-      "Genre": "Adventure, Drama, Sci-Fi",
-      "Director": "Christopher Nolan",
-      "Poster": "http://ia.media-imdb.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwMzM4ODI3MjE@._V1_SX300.jpg"
-    },
-    {
-      "Title": "Game of Thrones",
-      "Year": "2011–",
-      "Genre": "Adventure, Drama, Fantasy",
-      "Director": "N/A",
-      "Poster": "http://ia.media-imdb.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SX300.jpg"
-    },
-    {
-      "Title": "Vikings",
-      "Year": "2013–",
-      "Genre": "Action, Drama, History",
-      "Director": "N/A",
-      "Poster": "http://ia.media-imdb.com/images/M/MV5BOTEzNzI3MDc0N15BMl5BanBnXkFtZTgwMzk1MzA5NzE@._V1_SX300.jpg"
-    },
-    {
-      "Title": "Gotham",
-      "Year": "2014–",
-      "Genre": "Action, Crime, Drama",
-      "Director": "N/A",
-      "Poster": "http://ia.media-imdb.com/images/M/MV5BMTY2MjMwNDE4OV5BMl5BanBnXkFtZTgwNjI1NjU0OTE@._V1_SX300.jpg"
-    },
-    {
-      "Title": "Breaking Bad",
-      "Year": "2008–2013",
-      "Genre": "Crime, Drama, Thriller",
-      "Director": "Vince Gilligan",
-      "Poster": "http://ia.media-imdb.com/images/M/MV5BMTQ0ODYzODc0OV5BMl5BanBnXkFtZTgwMDk3OTcyMDE@._V1_SX300.jpg"
-    },
-    {
-      "Title": "Narcos",
-      "Year": "2015–",
-      "Genre": "Biography, Crime, Drama",
-      "Director": "N/A",
-      "Poster": "http://ia.media-imdb.com/images/M/MV5BMTU0ODQ4NDg2OF5BMl5BanBnXkFtZTgwNzczNTE4OTE@._V1_SX300.jpg"
-    }
-    // Ajoutez les autres films/séries ici à partir de votre JSON complet.
+  const API_KEY = "c11e7807d1msh078cc81a3189d79p1e6dcbjsn93a7441afe5b";
+  const API_HOST = "movie-database-alternative.p.rapidapi.com";
+
+  // List of movie titles to fetch
+  const movieTitles = [
+    "Avatar",
+    "I Am Legend",
+    "300",
+    "The Avengers",
+    "The Wolf of Wall Street",
+    "Interstellar",
+    "Game of Thrones",
+    "Vikings",
+    "Gotham",
+    "Breaking Bad",
+    "Narcos"
   ];
 
   const moviesContainer = document.getElementById("movies-container");
 
-  movies.forEach(movie => {
-    const movieCard = document.createElement("div");
-    movieCard.classList.add("movie-card");
+  // Function to fetch movie details
+  async function fetchMovieDetails(title) {
+    const response = await fetch(`https://${API_HOST}/?s=${encodeURIComponent(title)}&r=json&page=1`, {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": API_HOST,
+        "x-rapidapi-key": API_KEY
+      }
+    });
 
-    movieCard.innerHTML = `
-      <img src="${movie.Poster}" alt="${movie.Title}">
-      <div class="movie-details">
-        <h2>${movie.Title} (${movie.Year})</h2>
-        <p><strong>Genre:</strong> ${movie.Genre}</p>
-        <p><strong>Director:</strong> ${movie.Director}</p>
-      </div>
-    `;
+    const data = await response.json();
+    return data.Search ? data.Search[0] : null; // Return the first movie if available
+  }
 
-    moviesContainer.appendChild(movieCard);
-  });
+  // Function to display movies
+  async function displayMovies() {
+    for (const title of movieTitles) {
+      const movie = await fetchMovieDetails(title);
+      if (movie) {
+        const movieCard = document.createElement("div");
+        movieCard.classList.add("movie-card");
+
+        movieCard.innerHTML = `
+          <img src="${movie.Poster}" alt="${movie.Title}">
+          <div class="movie-details">
+            <h2>${movie.Title} (${movie.Year})</h2>
+            <p><strong>Type:</strong> ${movie.Type}</p>
+          </div>
+        `;
+
+        moviesContainer.appendChild(movieCard);
+      }
+    }
+  }
+
+  // Display movies when the page loads
+  displayMovies();
 </script>
 
 </body>
