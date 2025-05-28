@@ -1,121 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Movie Collection</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    .container {
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .movie-card {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .movie-card img {
-      width: 100%;
-      height: auto;
-    }
-    .movie-details {
-      padding: 15px;
-    }
-    .movie-details h2 {
-      margin: 0 0 10px;
-      font-size: 18px;
-    }
-    .movie-details p {
-      margin: 5px 0;
-      color: #555;
-    }
-  </style>
+  <title>Ma nouvelle série</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<header>
-  <h1>Dynamic Movie Collection</h1>
-</header>
-
-<div class="container" id="movies-container">
-  <!-- Movie cards will be dynamically inserted here -->
-</div>
-
-<script>
-  const API_KEY = "c11e7807d1msh078cc81a3189d79p1e6dcbjsn93a7441afe5b";
-  const API_HOST = "movie-database-alternative.p.rapidapi.com";
-
-  // List of movie titles to fetch
-  const movieTitles = [
-    "Avatar",
-    "I Am Legend",
-    "300",
-    "The Avengers",
-    "The Wolf of Wall Street",
-    "Interstellar",
-    "Game of Thrones",
-    "Vikings",
-    "Gotham",
-    "Breaking Bad",
-    "Narcos"
-  ];
-
-  const moviesContainer = document.getElementById("movies-container");
-
-  // Function to fetch movie details
-  async function fetchMovieDetails(title) {
-    const response = await fetch(`https://${API_HOST}/?s=${encodeURIComponent(title)}&r=json&page=1`, {
-      method: "GET",
-      headers: {
-        "x-rapidapi-host": API_HOST,
-        "x-rapidapi-key": API_KEY
-      }
-    });
-
-    const data = await response.json();
-    return data.Search ? data.Search[0] : null; // Return the first movie if available
-  }
-
-  // Function to display movies
-  async function displayMovies() {
-    for (const title of movieTitles) {
-      const movie = await fetchMovieDetails(title);
-      if (movie) {
-        const movieCard = document.createElement("div");
-        movieCard.classList.add("movie-card");
-
-        movieCard.innerHTML = `
-          <img src="${movie.Poster}" alt="${movie.Title}">
-          <div class="movie-details">
-            <h2>${movie.Title} (${movie.Year})</h2>
-            <p><strong>Type:</strong> ${movie.Type}</p>
-          </div>
-        `;
-
-        moviesContainer.appendChild(movieCard);
-      }
-    }
-  }
-
-  // Display movies when the page loads
-  displayMovies();
-</script>
-
+  <h1>Bienvenue !</h1>
+  <a href="https://streameo-tv.me/?series=devils-diner">Voir Devils Diner</a>
+  <script src="js/script.js"></script>
 </body>
 </html>
