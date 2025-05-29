@@ -341,6 +341,181 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            margin: 2rem 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-content {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .carousel-poster {
+            position: relative;
+            flex: 0 0 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-poster-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .carousel-info {
+            flex: 1;
+            padding: 1rem;
+        }
+
+        .carousel-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .carousel-info .tags {
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-info .overview {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        .category-section {
+            margin: 3rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .movie-list-container {
+            position: relative;
+        }
+
+        .movie-list {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 1rem 0;
+        }
+
+        .movie-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .movie-item {
+            flex: 0 0 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .movie-item:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .movie-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .movie-overlay {
+            padding: 1rem;
+        }
+
+        .movie-overlay h2 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .movie-overlay p {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .scroll-arrow.left {
+            left: -20px;
+        }
+
+        .scroll-arrow.right {
+            right: -20px;
+        }
+
+        @media (max-width: 768px) {
             .nav-menu {
                 display: none;
             }
@@ -355,6 +530,15 @@
             
             .categories {
                 grid-template-columns: 1fr;
+            }
+
+            .carousel-content {
+                flex-direction: column;
+            }
+
+            .carousel-poster {
+                flex: 0 0 auto;
+                width: 100%;
             }
         }
     </style>
@@ -378,6 +562,104 @@
     </header>
 
     <main class="main-content">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item" 
+                     data-iframe-link="https://sharecloudy.com/iframe/tHt61YaPJR"
+                     data-title="Sous écrous"
+                     data-year="2024"
+                     data-genres="Comédie"
+                     data-poster="https://image.tmdb.org/t/p/original/7uuZUh6aEcDy1BaJn4IbTWGdNE0.jpg"
+                     data-backdrop="https://image.tmdb.org/t/p/original/qzvUFS4kZazah70YiVOQ5Q4usZ5.jpg"
+                     data-overview="Une comédie captivante"
+                     data-vote-average="6.0"
+                     data-runtime="60 min"
+                     data-release-date="18/12/2024"
+                     data-creators="Hakim Bougheraba">
+                    <div class="carousel-content">
+                        <div class="carousel-poster">
+                            <img data-src="https://image.tmdb.org/t/p/original/7uuZUh6aEcDy1BaJn4IbTWGdNE0.jpg" alt="Sous écrous" class="carousel-poster-img">
+                        </div>
+                        <div class="carousel-info">
+                            <h1>Sous écrous</h1>
+                            <p class="tags">Comédie • 2024 • ⭐ 6.0</p>
+                            <p class="overview">Le quotidien de Sami et de Nada. Si ce dernier s'autoproclame comme le "plus grand voyou de la promenade", le second découvre pour la première fois le monde carcéral.</p>
+                            <button class="play-button" data-link="https://sharecloudy.com/iframe/tHt61YaPJR" data-title="Sous écrous">Regarder maintenant</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" 
+                     data-iframe-link="https://lecteur6.com/video/beb22abb9ec56c0cf7ec7d811dd91a56"
+                     data-title="Novocaine"
+                     data-year="2023"
+                     data-genres="Thriller, Crime"
+                     data-poster="https://image.tmdb.org/t/p/original/9p5hZaaIUIttwIJzkaGmvD4na7V.jpg"
+                     data-backdrop="https://image.tmdb.org/t/p/original/sNx1A3822kEbqeUxvo5A08o4N7o.jpg"
+                     data-overview="Un thriller captivant sur un homme confronté à un passé sombre qui menace de détruire sa vie."
+                     data-vote-average="6.5"
+                     data-runtime="1h 45m"
+                     data-release-date="15/10/2023"
+                     data-creators="">
+                    <div class="carousel-content">
+                        <div class="carousel-poster">
+                            <img data-src="https://image.tmdb.org/t/p/original/9p5hZaaIUIttwIJzkaGmvD4na7V.jpg" alt="Novocaine" class="carousel-poster-img">
+                        </div>
+                        <div class="carousel-info">
+                            <h1>Novocaine (2023)</h1>
+                            <p class="tags">Film • Thriller, Crime</p>
+                            <p class="overview">Un thriller captivant sur un homme confronté à un passé sombre qui menace de détruire sa vie.</p>
+                            <button class="play-button" data-link="https://lecteur6.com/video/beb22abb9ec56c0cf7ec7d811dd91a56" data-title="Novocaine">Regarder maintenant</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="category-section">
+            <h2 class="category-title">Populaire</h2>
+            <div class="movie-list-container">
+                <div class="scroll-arrow left"><i class="fas fa-chevron-left"></i></div>
+                <div class="movie-list">
+                    <div class="movie-item" data-link="https://sharecloudy.com/iframe/KjIA0SVIli">
+                        <img data-src="https://media.themoviedb.org/t/p/original/t30GjttOdb5At1sYy8b3TOwFgWV.jpg" alt="Les Évadés">
+                        <div class="movie-overlay">
+                            <h2>Les Évadés</h2>
+                            <p>Drame • 1994</p>
+                        </div>
+                    </div>
+                    <div class="movie-item" data-link="https://sharecloudy.com/iframe/illpTjRGtV">
+                        <img data-src="https://media.themoviedb.org/t/p/original/hj3vwgFZP0b9HxclXFW5wJL0UtD.jpg" alt="Le Parrain">
+                        <div class="movie-overlay">
+                            <h2>Le Parrain</h2>
+                            <p>Drame • 1972</p>
+                        </div>
+                    </div>
+                    <div class="movie-item" data-link="https://dropload.io/e/o8hxqc70xiy1">
+                        <img data-src="https://french-stream.gratis/uploads/thumb/300x450-0-80/2024-01/1704380229-839267880.jpg" alt="Selena Gomez">
+                        <div class="movie-overlay">
+                            <h2>Selena Gomez</h2>
+                            <p>Documentaire • 2022</p>
+                        </div>
+                    </div>
+                    <div class="movie-item" data-link="https://lecteur6.com/video/08425b881bcde94a383cd258cea331be">
+                        <img data-src="https://image.tmdb.org/t/p/w342/chMfGLOf5EMz0o10Duukmb9oj0P.jpg" alt="Le parrain 2">
+                        <div class="movie-overlay">
+                            <h2>Le parrain 2</h2>
+                            <p>Drame • 1974</p>
+                        </div>
+                    </div>
+                    <div class="movie-item" data-link="https://lecteur6.com/video/4b2944dfea61be814911110c21ddd974">
+                        <img data-src="https://image.tmdb.org/t/p/w342/9XT4MY53XburznftTsyg9JYc47N.jpg" alt="La Liste de Schindler">
+                        <div class="movie-overlay">
+                            <h2>La Liste de Schindler</h2>
+                            <p>Drame • 1993</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-arrow right"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        </section>
+
         <div id="accueil" class="section">
             <div class="hero-section">
                 <h1 class="hero-title">Bienvenue sur CineF</h1>
@@ -463,7 +745,6 @@
     </footer>
 
     <script>
-        // Données d'exemple avec liens de streaming
         const contentData = {
             films: [
                 { 
@@ -479,48 +760,6 @@
                     year: "2022", 
                     rating: "8.3",
                     iframeLink: "https://sharecloudy.com/iframe/example2"
-                },
-                { 
-                    title: "The Batman", 
-                    genre: "action", 
-                    year: "2022", 
-                    rating: "7.8",
-                    iframeLink: "https://sharecloudy.com/iframe/example3"
-                },
-                { 
-                    title: "Dune", 
-                    genre: "sci-fi", 
-                    year: "2021", 
-                    rating: "8.0",
-                    iframeLink: "https://sharecloudy.com/iframe/example4"
-                },
-                { 
-                    title: "Spider-Man: No Way Home", 
-                    genre: "action", 
-                    year: "2021", 
-                    rating: "8.4",
-                    iframeLink: "https://sharecloudy.com/iframe/example5"
-                },
-                { 
-                    title: "Joker", 
-                    genre: "drame", 
-                    year: "2019", 
-                    rating: "8.4",
-                    iframeLink: "https://sharecloudy.com/iframe/example6"
-                },
-                { 
-                    title: "Parasite", 
-                    genre: "drame", 
-                    year: "2019", 
-                    rating: "8.6",
-                    iframeLink: "https://sharecloudy.com/iframe/example7"
-                },
-                { 
-                    title: "Avengers: Endgame", 
-                    genre: "action", 
-                    year: "2019", 
-                    rating: "8.4",
-                    iframeLink: "https://sharecloudy.com/iframe/example8"
                 }
             ],
             series: [
@@ -530,48 +769,6 @@
                     year: "2016", 
                     rating: "8.7",
                     iframeLink: "https://sharecloudy.com/iframe/series1"
-                },
-                { 
-                    title: "The Witcher", 
-                    genre: "fantastique", 
-                    year: "2019", 
-                    rating: "8.2",
-                    iframeLink: "https://sharecloudy.com/iframe/series2"
-                },
-                { 
-                    title: "Breaking Bad", 
-                    genre: "drame", 
-                    year: "2008", 
-                    rating: "9.5",
-                    iframeLink: "https://sharecloudy.com/iframe/series3"
-                },
-                { 
-                    title: "Game of Thrones", 
-                    genre: "fantastique", 
-                    year: "2011", 
-                    rating: "9.3",
-                    iframeLink: "https://sharecloudy.com/iframe/series4"
-                },
-                { 
-                    title: "La Casa de Papel", 
-                    genre: "thriller", 
-                    year: "2017", 
-                    rating: "8.3",
-                    iframeLink: "https://sharecloudy.com/iframe/series5"
-                },
-                { 
-                    title: "The Office", 
-                    genre: "comedie", 
-                    year: "2005", 
-                    rating: "8.9",
-                    iframeLink: "https://sharecloudy.com/iframe/series6"
-                },
-                { 
-                    title: "Friends", 
-                    genre: "comedie", 
-                    year: "1994", 
-                    rating: "8.9",
-                    iframeLink: "https://sharecloudy.com/iframe/series7"
                 }
             ],
             animes: [
@@ -581,48 +778,6 @@
                     year: "2013", 
                     rating: "9.0",
                     iframeLink: "https://sharecloudy.com/iframe/anime1"
-                },
-                { 
-                    title: "Death Note", 
-                    genre: "seinen", 
-                    year: "2006", 
-                    rating: "9.0",
-                    iframeLink: "https://sharecloudy.com/iframe/anime2"
-                },
-                { 
-                    title: "One Piece", 
-                    genre: "shonen", 
-                    year: "1999", 
-                    rating: "8.9",
-                    iframeLink: "https://sharecloudy.com/iframe/anime3"
-                },
-                { 
-                    title: "Naruto", 
-                    genre: "shonen", 
-                    year: "2002", 
-                    rating: "8.4",
-                    iframeLink: "https://sharecloudy.com/iframe/anime4"
-                },
-                { 
-                    title: "Dragon Ball Z", 
-                    genre: "shonen", 
-                    year: "1989", 
-                    rating: "8.7",
-                    iframeLink: "https://sharecloudy.com/iframe/anime5"
-                },
-                { 
-                    title: "Your Name", 
-                    genre: "romance", 
-                    year: "2016", 
-                    rating: "8.2",
-                    iframeLink: "https://sharecloudy.com/iframe/anime6"
-                },
-                { 
-                    title: "Spirited Away", 
-                    genre: "fantastique", 
-                    year: "2001", 
-                    rating: "9.3",
-                    iframeLink: "https://sharecloudy.com/iframe/anime7"
                 }
             ],
             documentaires: [
@@ -632,67 +787,31 @@
                     year: "2006", 
                     rating: "9.4",
                     iframeLink: "https://sharecloudy.com/iframe/doc1"
-                },
-                { 
-                    title: "Free Solo", 
-                    genre: "sport", 
-                    year: "2018", 
-                    rating: "8.2",
-                    iframeLink: "https://sharecloudy.com/iframe/doc2"
-                },
-                { 
-                    title: "The Social Dilemma", 
-                    genre: "science", 
-                    year: "2020", 
-                    rating: "7.6",
-                    iframeLink: "https://sharecloudy.com/iframe/doc3"
-                },
-                { 
-                    title: "Won't You Be My Neighbor?", 
-                    genre: "biographie", 
-                    year: "2018", 
-                    rating: "8.4",
-                    iframeLink: "https://sharecloudy.com/iframe/doc4"
-                },
-                { 
-                    title: "March of the Penguins", 
-                    genre: "nature", 
-                    year: "2005", 
-                    rating: "7.5",
-                    iframeLink: "https://sharecloudy.com/iframe/doc5"
                 }
             ]
         };
 
         let currentSection = 'accueil';
         let currentFilter = 'tous';
+        let currentSlide = 0;
 
         function showSection(sectionName) {
-            // Cacher toutes les sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.style.display = 'none');
-            
-            // Afficher la section demandée
-            document.getElementById(sectionName).style.display = 'block';
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = sectionName === section.id ? 'block' : 'none';
+            });
             currentSection = sectionName;
-            
-            // Charger le contenu si ce n'est pas l'accueil
-            if (sectionName !== 'accueil') {
-                loadContent(sectionName);
-            }
+            if (sectionName !== 'accueil') loadContent(sectionName);
         }
 
         function loadContent(type) {
             const grid = document.getElementById(type + 'Grid');
             const data = contentData[type] || [];
-            
             grid.innerHTML = '';
             
             data.forEach(item => {
                 const contentItem = document.createElement('div');
                 contentItem.className = 'content-item';
                 contentItem.setAttribute('data-genre', item.genre);
-                
                 contentItem.innerHTML = `
                     <div class="content-poster">🎬</div>
                     <div class="content-title">${item.title}</div>
@@ -701,29 +820,20 @@
                         <br>Genre: ${item.genre}
                     </div>
                 `;
-                
                 contentItem.onclick = () => playContent(item.title, item.iframeLink);
                 grid.appendChild(contentItem);
             });
         }
 
         function filterContent(genre) {
-            // Mettre à jour les boutons actifs
             document.querySelectorAll('.genre-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            
             event.target.classList.add('active');
             currentFilter = genre;
             
-            // Filtrer le contenu
-            const items = document.querySelectorAll('.content-item');
-            items.forEach(item => {
-                if (genre === 'tous' || item.getAttribute('data-genre') === genre) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
+            document.querySelectorAll('.content-item').forEach(item => {
+                item.style.display = (genre === 'tous' || item.getAttribute('data-genre') === genre) ? 'block' : 'none';
             });
         }
 
@@ -731,7 +841,6 @@
             const query = document.getElementById('searchInput').value.toLowerCase();
             if (!query) return;
             
-            // Rechercher dans toutes les catégories
             let results = [];
             Object.keys(contentData).forEach(category => {
                 contentData[category].forEach(item => {
@@ -741,26 +850,14 @@
                 });
             });
             
-            // Afficher les résultats
             if (results.length > 0) {
                 alert(`Trouvé ${results.length} résultat(s) pour "${query}"`);
-                console.log('Résultats de recherche:', results);
             } else {
                 alert(`Aucun résultat trouvé pour "${query}"`);
             }
         }
 
         function playContent(title, iframeLink) {
-            if (iframeLink) {
-                // Créer une modal pour le lecteur
-                createVideoModal(title, iframeLink);
-            } else {
-                alert(`Lecture de: ${title}\n\nLien de streaming à configurer`);
-            }
-        }
-
-        function createVideoModal(title, iframeLink) {
-            // Créer la modal
             const modal = document.createElement('div');
             modal.className = 'video-modal';
             modal.innerHTML = `
@@ -779,19 +876,30 @@
 
         function closeVideoModal() {
             const modal = document.querySelector('.video-modal');
-            if (modal) {
-                document.body.removeChild(modal);
-            }
+            if (modal) document.body.removeChild(modal);
         }
 
-        // Gérer la recherche avec Enter
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchContent();
-            }
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % document.querySelectorAll('.carousel-item').length;
+            document.querySelector('.carousel-inner').style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        setInterval(nextSlide, 5000);
+
+        document.querySelectorAll('.scroll-arrow').forEach(arrow => {
+            arrow.addEventListener('click', () => {
+                const direction = arrow.classList.contains('left') ? -1 : 1;
+                arrow.closest('.movie-list-container').querySelector('.movie-list').scrollBy({ 
+                    left: direction * 300, 
+                    behavior: 'smooth' 
+                });
+            });
         });
 
-        // Initialiser la page
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') searchContent();
+        });
+
         window.addEventListener('load', function() {
             showSection('accueil');
         });
