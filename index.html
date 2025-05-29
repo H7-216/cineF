@@ -5,19 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineF - Films et Séries en Streaming</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             color: #ffffff;
             min-height: 100vh;
         }
-
         .header {
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
@@ -28,7 +22,6 @@
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -37,7 +30,6 @@
             align-items: center;
             padding: 0 2rem;
         }
-
         .logo {
             font-size: 2rem;
             font-weight: bold;
@@ -47,32 +39,25 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
         }
-
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-
         .nav-link {
             color: #ffffff;
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 8px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
-
         .nav-link:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
         }
-
         .search-container {
             position: relative;
         }
-
         .search-bar {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -80,16 +65,13 @@
             padding: 0.8rem 2rem 0.8rem 1rem;
             color: #ffffff;
             width: 300px;
-            transition: all 0.3s ease;
         }
-
         .search-bar:focus {
             outline: none;
             background: rgba(255, 255, 255, 0.15);
             border-color: #4ecdc4;
             box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
         }
-
         .search-btn {
             position: absolute;
             right: 10px;
@@ -101,21 +83,16 @@
             cursor: pointer;
             font-size: 1.2rem;
         }
-
-        .main-content {
-            margin-top: 80px;
-            padding: 2rem;
-        }
-
+        .main-content { margin-top: 80px; padding: 2rem; }
         .hero-section {
             text-align: center;
             padding: 4rem 0;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23000" width="1200" height="600"/><circle cx="200" cy="150" r="3" fill="%23fff" opacity="0.1"/><circle cx="400" cy="250" r="2" fill="%23fff" opacity="0.15"/><circle cx="800" cy="100" r="4" fill="%23fff" opacity="0.1"/><circle cx="1000" cy="300" r="3" fill="%23fff" opacity="0.12"/></svg>');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23000" width="1200" height="600"/><circle cx="200" cy="150" r="3" fill="%23fff" opacity="0.1"/><circle cx="400" cy="250" r="2" fill="%23fff" opacity="0.15"/><circle cx="800" cy="100" r="4" fill="%23fff" opacity="0.1"/><circle cx="1000" cy="300" r="3" fill="%23fff" opacity="0.12"/></svg>');
             background-size: cover;
             border-radius: 20px;
             margin-bottom: 3rem;
         }
-
         .hero-title {
             font-size: 3rem;
             margin-bottom: 1rem;
@@ -124,20 +101,17 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
         .hero-subtitle {
             font-size: 1.2rem;
             opacity: 0.8;
             margin-bottom: 2rem;
         }
-
         .categories {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
-
         .category-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -147,55 +121,32 @@
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
         }
-
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .category-card:hover::before {
-            left: 100%;
-        }
-
         .category-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             border-color: #4ecdc4;
         }
-
         .category-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
             display: block;
         }
-
         .category-title {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
             color: #4ecdc4;
         }
-
         .category-count {
             opacity: 0.7;
             font-size: 0.9rem;
         }
-
         .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
-
         .content-item {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
@@ -204,13 +155,11 @@
             cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .content-item:hover {
             transform: scale(1.05);
             background: rgba(255, 255, 255, 0.1);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-
         .content-poster {
             width: 100%;
             height: 250px;
@@ -223,18 +172,15 @@
             font-size: 3rem;
             color: rgba(255, 255, 255, 0.3);
         }
-
         .content-title {
             font-weight: bold;
             margin-bottom: 0.5rem;
             color: #ffffff;
         }
-
         .content-info {
             font-size: 0.8rem;
             opacity: 0.7;
         }
-
         .footer {
             margin-top: 4rem;
             text-align: center;
@@ -242,7 +188,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             opacity: 0.7;
         }
-
         .genre-filter {
             display: flex;
             gap: 1rem;
@@ -250,7 +195,6 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-
         .genre-btn {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -260,13 +204,11 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .genre-btn:hover, .genre-btn.active {
             background: #4ecdc4;
             border-color: #4ecdc4;
             transform: translateY(-2px);
         }
-
         .video-modal {
             position: fixed;
             top: 0;
@@ -280,7 +222,6 @@
             z-index: 2000;
             animation: fadeIn 0.3s ease;
         }
-
         .modal-content {
             background: rgba(20, 20, 40, 0.95);
             border-radius: 15px;
@@ -290,7 +231,6 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
         .modal-header {
             display: flex;
             justify-content: space-between;
@@ -299,12 +239,10 @@
             background: rgba(0, 0, 0, 0.5);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .modal-header h3 {
             color: #4ecdc4;
             margin: 0;
         }
-
         .close-btn {
             background: none;
             border: none;
@@ -320,589 +258,362 @@
             border-radius: 50%;
             transition: all 0.3s ease;
         }
-
         .close-btn:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: scale(1.1);
         }
-
         .modal-body {
             height: calc(100% - 80px);
             padding: 0;
         }
-
         .modal-body iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
-        .carousel {
-            position: relative;
-            width: 100%;
-            margin: 2rem 0;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .carousel-inner {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-item {
-            min-width: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-content {
-            display: flex;
-            gap: 2rem;
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .carousel-poster {
-            position: relative;
-            flex: 0 0 300px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .carousel-poster-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .carousel-info {
-            flex: 1;
-            padding: 1rem;
-        }
-
-        .carousel-info h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .carousel-info .tags {
-            color: #aaa;
-            margin-bottom: 1rem;
-        }
-
-        .carousel-info .overview {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            opacity: 0.8;
-        }
-
-        .play-button {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .play-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
-        }
-
-        .category-section {
-            margin: 3rem 0;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .movie-list-container {
-            position: relative;
-        }
-
-        .movie-list {
-            display: flex;
-            gap: 1.5rem;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 1rem 0;
-        }
-
-        .movie-list::-webkit-scrollbar {
-            display: none;
-        }
-
-        .movie-item {
-            flex: 0 0 200px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .movie-item:hover {
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .movie-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .movie-overlay {
-            padding: 1rem;
-        }
-
-        .movie-overlay h2 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .movie-overlay p {
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
-
-        .scroll-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .scroll-arrow.left {
-            left: -20px;
-        }
-
-        .scroll-arrow.right {
-            right: -20px;
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            
-            .search-bar {
-                width: 200px;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .categories {
-                grid-template-columns: 1fr;
-            }
-
-            .carousel-content {
-                flex-direction: column;
-            }
-
-            .carousel-poster {
-                flex: 0 0 auto;
-                width: 100%;
-            }
-        }
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav-container">
-            <div class="logo">CineF</div>
-            <ul class="nav-menu">
-                <li><a href="#" class="nav-link" onclick="showSection('accueil')">Accueil</a></li>
-                <li><a href="#" class="nav-link" onclick="showSection('films')">Films</a></li>
-                <li><a href="#" class="nav-link" onclick="showSection('series')">Séries</a></li>
-                <li><a href="#" class="nav-link" onclick="showSection('animes')">Animés</a></li>
-                <li><a href="#" class="nav-link" onclick="showSection('documentaires')">Documentaires</a></li>
-            </ul>
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Rechercher un film, série..." id="searchInput">
-                <button class="search-btn" onclick="searchContent()">🔍</button>
-            </div>
-        </nav>
-    </header>
+<header class="header">
+    <nav class="nav-container">
+        <div class="logo">CineF</div>
+        <ul class="nav-menu">
+            <li><a href="#" class="nav-link" onclick="showSection('accueil')">Accueil</a></li>
+            <li><a href="#" class="nav-link" onclick="showSection('films')">Films</a></li>
+            <li><a href="#" class="nav-link" onclick="showSection('series')">Séries</a></li>
+            <li><a href="#" class="nav-link" onclick="showSection('animes')">Animés</a></li>
+            <li><a href="#" class="nav-link" onclick="showSection('documentaires')">Documentaires</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Rechercher un film, série..." id="searchInput">
+            <button class="search-btn" onclick="searchContent()">🔍</button>
+        </div>
+    </nav>
+</header>
 
-    <main class="main-content">
-        <div class="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item" 
-                     data-iframe-link="https://sharecloudy.com/iframe/tHt61YaPJR"
-                     data-title="Sous écrous"
-                     data-year="2024"
-                     data-genres="Comédie"
-                     data-poster="https://image.tmdb.org/t/p/original/7uuZUh6aEcDy1BaJn4IbTWGdNE0.jpg"
-                     data-backdrop="https://image.tmdb.org/t/p/original/qzvUFS4kZazah70YiVOQ5Q4usZ5.jpg"
-                     data-overview="Une comédie captivante"
-                     data-vote-average="6.0"
-                     data-runtime="60 min"
-                     data-release-date="18/12/2024"
-                     data-creators="Hakim Bougheraba">
-                    <div class="carousel-content">
-                        <div class="carousel-poster">
-                            <img data-src="https://image.tmdb.org/t/p/original/7uuZUh6aEcDy1BaJn4IbTWGdNE0.jpg" alt="Sous écrous" class="carousel-poster-img">
-                        </div>
-                        <div class="carousel-info">
-                            <h1>Sous écrous</h1>
-                            <p class="tags">Comédie • 2024 • ⭐ 6.0</p>
-                            <p class="overview">Le quotidien de Sami et de Nada. Si ce dernier s'autoproclame comme le "plus grand voyou de la promenade", le second découvre pour la première fois le monde carcéral.</p>
-                            <button class="play-button" data-link="https://sharecloudy.com/iframe/tHt61YaPJR" data-title="Sous écrous">Regarder maintenant</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" 
-                     data-iframe-link="https://lecteur6.com/video/beb22abb9ec56c0cf7ec7d811dd91a56"
-                     data-title="Novocaine"
-                     data-year="2023"
-                     data-genres="Thriller, Crime"
-                     data-poster="https://image.tmdb.org/t/p/original/9p5hZaaIUIttwIJzkaGmvD4na7V.jpg"
-                     data-backdrop="https://image.tmdb.org/t/p/original/sNx1A3822kEbqeUxvo5A08o4N7o.jpg"
-                     data-overview="Un thriller captivant sur un homme confronté à un passé sombre qui menace de détruire sa vie."
-                     data-vote-average="6.5"
-                     data-runtime="1h 45m"
-                     data-release-date="15/10/2023"
-                     data-creators="">
-                    <div class="carousel-content">
-                        <div class="carousel-poster">
-                            <img data-src="https://image.tmdb.org/t/p/original/9p5hZaaIUIttwIJzkaGmvD4na7V.jpg" alt="Novocaine" class="carousel-poster-img">
-                        </div>
-                        <div class="carousel-info">
-                            <h1>Novocaine (2023)</h1>
-                            <p class="tags">Film • Thriller, Crime</p>
-                            <p class="overview">Un thriller captivant sur un homme confronté à un passé sombre qui menace de détruire sa vie.</p>
-                            <button class="play-button" data-link="https://lecteur6.com/video/beb22abb9ec56c0cf7ec7d811dd91a56" data-title="Novocaine">Regarder maintenant</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<main class="main-content">
+    <div id="accueil" class="section">
+        <div class="hero-section">
+            <h1 class="hero-title">Bienvenue sur CineF</h1>
+            <p class="hero-subtitle">Votre plateforme de streaming préférée - Films, Séries, Animés et plus encore</p>
         </div>
 
-        <section class="category-section">
-            <h2 class="category-title">Populaire</h2>
-            <div class="movie-list-container">
-                <div class="scroll-arrow left"><i class="fas fa-chevron-left"></i></div>
-                <div class="movie-list">
-                    <div class="movie-item" data-link="https://sharecloudy.com/iframe/KjIA0SVIli">
-                        <img data-src="https://media.themoviedb.org/t/p/original/t30GjttOdb5At1sYy8b3TOwFgWV.jpg" alt="Les Évadés">
-                        <div class="movie-overlay">
-                            <h2>Les Évadés</h2>
-                            <p>Drame • 1994</p>
-                        </div>
-                    </div>
-                    <div class="movie-item" data-link="https://sharecloudy.com/iframe/illpTjRGtV">
-                        <img data-src="https://media.themoviedb.org/t/p/original/hj3vwgFZP0b9HxclXFW5wJL0UtD.jpg" alt="Le Parrain">
-                        <div class="movie-overlay">
-                            <h2>Le Parrain</h2>
-                            <p>Drame • 1972</p>
-                        </div>
-                    </div>
-                    <div class="movie-item" data-link="https://dropload.io/e/o8hxqc70xiy1">
-                        <img data-src="https://french-stream.gratis/uploads/thumb/300x450-0-80/2024-01/1704380229-839267880.jpg" alt="Selena Gomez">
-                        <div class="movie-overlay">
-                            <h2>Selena Gomez</h2>
-                            <p>Documentaire • 2022</p>
-                        </div>
-                    </div>
-                    <div class="movie-item" data-link="https://lecteur6.com/video/08425b881bcde94a383cd258cea331be">
-                        <img data-src="https://image.tmdb.org/t/p/w342/chMfGLOf5EMz0o10Duukmb9oj0P.jpg" alt="Le parrain 2">
-                        <div class="movie-overlay">
-                            <h2>Le parrain 2</h2>
-                            <p>Drame • 1974</p>
-                        </div>
-                    </div>
-                    <div class="movie-item" data-link="https://lecteur6.com/video/4b2944dfea61be814911110c21ddd974">
-                        <img data-src="https://image.tmdb.org/t/p/w342/9XT4MY53XburznftTsyg9JYc47N.jpg" alt="La Liste de Schindler">
-                        <div class="movie-overlay">
-                            <h2>La Liste de Schindler</h2>
-                            <p>Drame • 1993</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="scroll-arrow right"><i class="fas fa-chevron-right"></i></div>
+        <div class="categories">
+            <div class="category-card" onclick="showSection('films')">
+                <span class="category-icon">🎬</span>
+                <h3 class="category-title">Films</h3>
+                <p class="category-count">Découvrez notre collection de films</p>
             </div>
-        </section>
-
-        <div id="accueil" class="section">
-            <div class="hero-section">
-                <h1 class="hero-title">Bienvenue sur CineF</h1>
-                <p class="hero-subtitle">Votre plateforme de streaming préférée - Films, Séries, Animés et plus encore</p>
+            <div class="category-card" onclick="showSection('series')">
+                <span class="category-icon">📺</span>
+                <h3 class="category-title">Séries</h3>
+                <p class="category-count">Binge-watchez vos séries préférées</p>
             </div>
-
-            <div class="categories">
-                <div class="category-card" onclick="showSection('films')">
-                    <span class="category-icon">🎬</span>
-                    <h3 class="category-title">Films</h3>
-                    <p class="category-count">Découvrez notre collection de films</p>
-                </div>
-                <div class="category-card" onclick="showSection('series')">
-                    <span class="category-icon">📺</span>
-                    <h3 class="category-title">Séries</h3>
-                    <p class="category-count">Binge-watchez vos séries préférées</p>
-                </div>
-                <div class="category-card" onclick="showSection('animes')">
-                    <span class="category-icon">🎌</span>
-                    <h3 class="category-title">Animés</h3>
-                    <p class="category-count">Le meilleur de l'animation japonaise</p>
-                </div>
-                <div class="category-card" onclick="showSection('documentaires')">
-                    <span class="category-icon">🎥</span>
-                    <h3 class="category-title">Documentaires</h3>
-                    <p class="category-count">Explorez et apprenez</p>
-                </div>
+            <div class="category-card" onclick="showSection('animes')">
+                <span class="category-icon">🎌</span>
+                <h3 class="category-title">Animés</h3>
+                <p class="category-count">Le meilleur de l'animation japonaise</p>
+            </div>
+            <div class="category-card" onclick="showSection('documentaires')">
+                <span class="category-icon">🎥</span>
+                <h3 class="category-title">Documentaires</h3>
+                <p class="category-count">Explorez et apprenez</p>
             </div>
         </div>
+    </div>
 
-        <div id="films" class="section" style="display: none;">
-            <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Films</h2>
-            <div class="genre-filter">
-                <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
-                <button class="genre-btn" onclick="filterContent('action')">Action</button>
-                <button class="genre-btn" onclick="filterContent('comedie')">Comédie</button>
-                <button class="genre-btn" onclick="filterContent('drame')">Drame</button>
-                <button class="genre-btn" onclick="filterContent('horreur')">Horreur</button>
-                <button class="genre-btn" onclick="filterContent('sci-fi')">Sci-Fi</button>
-            </div>
-            <div class="content-grid" id="filmsGrid"></div>
+    <div id="films" class="section" style="display: none;">
+        <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Films</h2>
+        <div class="genre-filter">
+            <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
+            <button class="genre-btn" onclick="filterContent('action')">Action</button>
+            <button class="genre-btn" onclick="filterContent('comedie')">Comédie</button>
+            <button class="genre-btn" onclick="filterContent('drame')">Drame</button>
+            <button class="genre-btn" onclick="filterContent('horreur')">Horreur</button>
+            <button class="genre-btn" onclick="filterContent('sci-fi')">Sci-Fi</button>
         </div>
+        <div class="content-grid" id="filmsGrid"></div>
+    </div>
 
-        <div id="series" class="section" style="display: none;">
-            <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Séries</h2>
-            <div class="genre-filter">
-                <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
-                <button class="genre-btn" onclick="filterContent('drame')">Drame</button>
-                <button class="genre-btn" onclick="filterContent('comedie')">Comédie</button>
-                <button class="genre-btn" onclick="filterContent('thriller')">Thriller</button>
-                <button class="genre-btn" onclick="filterContent('fantastique')">Fantastique</button>
-            </div>
-            <div class="content-grid" id="seriesGrid"></div>
+    <div id="series" class="section" style="display: none;">
+        <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Séries</h2>
+        <div class="genre-filter">
+            <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
+            <button class="genre-btn" onclick="filterContent('drame')">Drame</button>
+            <button class="genre-btn" onclick="filterContent('comedie')">Comédie</button>
+            <button class="genre-btn" onclick="filterContent('thriller')">Thriller</button>
+            <button class="genre-btn" onclick="filterContent('fantastique')">Fantastique</button>
         </div>
+        <div class="content-grid" id="seriesGrid"></div>
+    </div>
 
-        <div id="animes" class="section" style="display: none;">
-            <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Animés</h2>
-            <div class="genre-filter">
-                <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
-                <button class="genre-btn" onclick="filterContent('shonen')">Shōnen</button>
-                <button class="genre-btn" onclick="filterContent('seinen')">Seinen</button>
-                <button class="genre-btn" onclick="filterContent('romance')">Romance</button>
-                <button class="genre-btn" onclick="filterContent('mecha')">Mecha</button>
-            </div>
-            <div class="content-grid" id="animesGrid"></div>
+    <div id="animes" class="section" style="display: none;">
+        <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Animés</h2>
+        <div class="genre-filter">
+            <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
+            <button class="genre-btn" onclick="filterContent('shonen')">Shōnen</button>
+            <button class="genre-btn" onclick="filterContent('seinen')">Seinen</button>
+            <button class="genre-btn" onclick="filterContent('romance')">Romance</button>
+            <button class="genre-btn" onclick="filterContent('mecha')">Mecha</button>
         </div>
+        <div class="content-grid" id="animesGrid"></div>
+    </div>
 
-        <div id="documentaires" class="section" style="display: none;">
-            <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Documentaires</h2>
-            <div class="genre-filter">
-                <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
-                <button class="genre-btn" onclick="filterContent('nature')">Nature</button>
-                <button class="genre-btn" onclick="filterContent('histoire')">Histoire</button>
-                <button class="genre-btn" onclick="filterContent('science')">Science</button>
-                <button class="genre-btn" onclick="filterContent('biographie')">Biographie</button>
-            </div>
-            <div class="content-grid" id="documentairesGrid"></div>
+    <div id="documentaires" class="section" style="display: none;">
+        <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Documentaires</h2>
+        <div class="genre-filter">
+            <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
+            <button class="genre-btn" onclick="filterContent('nature')">Nature</button>
+            <button class="genre-btn" onclick="filterContent('histoire')">Histoire</button>
+            <button class="genre-btn" onclick="filterContent('science')">Science</button>
+            <button class="genre-btn" onclick="filterContent('biographie')">Biographie</button>
         </div>
-    </main>
+        <div class="content-grid" id="documentairesGrid"></div>
+    </div>
+</main>
 
-    <footer class="footer">
-        <p>&copy; 2024 CineF - Votre plateforme de streaming. Tous droits réservés.</p>
-    </footer>
-
-    <script>
-        const contentData = {
-            films: [
-                { 
-                    title: "Avatar: La Voie de l'Eau", 
-                    genre: "sci-fi", 
-                    year: "2022", 
-                    rating: "8.1",
-                    iframeLink: "https://sharecloudy.com/iframe/tHt61YaPJR"
-                },
-                { 
-                    title: "Top Gun: Maverick", 
-                    genre: "action", 
-                    year: "2022", 
-                    rating: "8.3",
-                    iframeLink: "https://sharecloudy.com/iframe/example2"
-                }
-            ],
-            series: [
-                { 
-                    title: "Stranger Things", 
-                    genre: "fantastique", 
-                    year: "2016", 
-                    rating: "8.7",
-                    iframeLink: "https://sharecloudy.com/iframe/series1"
-                }
-            ],
-            animes: [
-                { 
-                    title: "Attack on Titan", 
-                    genre: "shonen", 
-                    year: "2013", 
-                    rating: "9.0",
-                    iframeLink: "https://sharecloudy.com/iframe/anime1"
-                }
-            ],
-            documentaires: [
-                { 
-                    title: "Planet Earth", 
-                    genre: "nature", 
-                    year: "2006", 
-                    rating: "9.4",
-                    iframeLink: "https://sharecloudy.com/iframe/doc1"
-                }
-            ]
-        };
-
-        let currentSection = 'accueil';
-        let currentFilter = 'tous';
-        let currentSlide = 0;
-
-        function showSection(sectionName) {
-            document.querySelectorAll('.section').forEach(section => {
-                section.style.display = sectionName === section.id ? 'block' : 'none';
-            });
-            currentSection = sectionName;
-            if (sectionName !== 'accueil') loadContent(sectionName);
+<footer class="footer">
+    <p>&copy; 2024 CineF - Votre plateforme de streaming. Tous droits réservés.</p>
+</footer>
+<script>
+const contentData = {
+    films: [
+        {
+            title: "Détour Mortel 6",
+            genre: "horreur",
+            year: "2014",
+            rating: "6.2",
+            iframeLink: "https://supervideo.cc/e/kctwxszw0a6c"
+        },
+        {
+            title: "Détour Mortel 5",
+            genre: "horreur",
+            year: "2012",
+            rating: "6.1",
+            iframeLink: "https://supervideo.cc/e/1z6oz15zob30"
+        },
+        {
+            title: "Détour Mortel : Fondation",
+            genre: "horreur",
+            year: "2021",
+            rating: "6.5",
+            iframeLink: "https://supervideo.cc/e/obg23s6vufpw"
+        },
+        {
+            title: "Joker",
+            genre: "drame",
+            year: "2019",
+            rating: "8.4",
+            iframeLink: "https://uqload.to/embed-4og46jxmoogb.html"
+        },
+        {
+            title: "Spider-Man: No Way Home",
+            genre: "action",
+            year: "2021",
+            rating: "8.4",
+            iframeLink: "https://uqload.to/embed-fom0crj79m0y.html"
         }
-
-        function loadContent(type) {
-            const grid = document.getElementById(type + 'Grid');
-            const data = contentData[type] || [];
-            grid.innerHTML = '';
-            
-            data.forEach(item => {
-                const contentItem = document.createElement('div');
-                contentItem.className = 'content-item';
-                contentItem.setAttribute('data-genre', item.genre);
-                contentItem.innerHTML = `
-                    <div class="content-poster">🎬</div>
-                    <div class="content-title">${item.title}</div>
-                    <div class="content-info">
-                        ${item.year} • ⭐ ${item.rating}
-                        <br>Genre: ${item.genre}
-                    </div>
-                `;
-                contentItem.onclick = () => playContent(item.title, item.iframeLink);
-                grid.appendChild(contentItem);
-            });
+    ],
+    series: [
+        {
+            title: "Dahmer",
+            genre: "thriller",
+            year: "2022",
+            rating: "7.8",
+            iframeLink: "https://streameo-tv.me/?series=dahmer"
+        },
+        {
+            title: "The Bear",
+            genre: "drame",
+            year: "2023",
+            rating: "8.6",
+            iframeLink: "https://streameo-tv.me/?series=the-bear-sur-place-ou-a-emporter"
+        },
+        {
+            title: "Sans Limites",
+            genre: "science",
+            year: "2022",
+            rating: "7.1",
+            iframeLink: "https://streameo-tv.me/?series=sans-limites-avec-chris-hemsworth"
+        },
+        {
+            title: "La Casa de Papel",
+            genre: "thriller",
+            year: "2017",
+            rating: "8.3",
+            iframeLink: "https://uqload.to/embed-zab47djnhk4y.html"
         }
-
-        function filterContent(genre) {
-            document.querySelectorAll('.genre-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            currentFilter = genre;
-            
-            document.querySelectorAll('.content-item').forEach(item => {
-                item.style.display = (genre === 'tous' || item.getAttribute('data-genre') === genre) ? 'block' : 'none';
-            });
+    ],
+    animes: [
+        {
+            title: "Link Click",
+            genre: "seinen",
+            year: "2021",
+            rating: "8.9",
+            iframeLink: "https://streameo-tv.me/?series=link-click"
+        },
+        {
+            title: "Dororo",
+            genre: "shonen",
+            year: "2019",
+            rating: "8.3",
+            iframeLink: "https://streameo-tv.me/?series=dororo"
+        },
+        {
+            title: "Kuroko no Basket",
+            genre: "shonen",
+            year: "2012",
+            rating: "8.2",
+            iframeLink: "https://streameo-tv.me/?series=kuroko"
         }
+    ],
+    documentaires: [
+        {
+            title: "Zuckerberg, roi du Métaverse",
+            genre: "biographie",
+            year: "2022",
+            rating: "7.5",
+            iframeLink: "https://sharecloudy.com/iframe/uM1ijDy18x"
+        },
+        {
+            title: "Money Electric",
+            genre: "science",
+            year: "2023",
+            rating: "7.3",
+            iframeLink: "https://sharecloudy.com/iframe/Ve511B9mS4"
+        },
+        {
+            title: "Sicko",
+            genre: "science",
+            year: "2007",
+            rating: "8.0",
+            iframeLink: "https://sharecloudy.com/iframe/b871aH7nCy"
+        }
+    ]
+};
+let currentSection = 'accueil';
+let currentFilter = 'tous';
 
-        function searchContent() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            if (!query) return;
-            
-            let results = [];
-            Object.keys(contentData).forEach(category => {
-                contentData[category].forEach(item => {
-                    if (item.title.toLowerCase().includes(query)) {
-                        results.push({...item, category});
-                    }
-                });
-            });
-            
-            if (results.length > 0) {
-                alert(`Trouvé ${results.length} résultat(s) pour "${query}"`);
-            } else {
-                alert(`Aucun résultat trouvé pour "${query}"`);
+function showSection(sectionName) {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => section.style.display = 'none');
+
+    document.getElementById(sectionName).style.display = 'block';
+    currentSection = sectionName;
+
+    if (sectionName !== 'accueil') {
+        loadContent(sectionName);
+    }
+}
+
+function loadContent(type) {
+    const grid = document.getElementById(type + 'Grid');
+    const data = contentData[type] || [];
+
+    grid.innerHTML = '';
+
+    data.forEach(item => {
+        const contentItem = document.createElement('div');
+        contentItem.className = 'content-item';
+        contentItem.setAttribute('data-genre', item.genre);
+
+        contentItem.innerHTML = `
+            <div class="content-poster">🎬</div>
+            <div class="content-title">${item.title}</div>
+            <div class="content-info">
+                ${item.year} • ⭐ ${item.rating}<br>Genre: ${item.genre}
+            </div>
+        `;
+
+        contentItem.onclick = () => playContent(item.title, item.iframeLink);
+        grid.appendChild(contentItem);
+    });
+}
+
+function filterContent(genre) {
+    document.querySelectorAll('.genre-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    event.target.classList.add('active');
+    currentFilter = genre;
+
+    const items = document.querySelectorAll('.content-item');
+    items.forEach(item => {
+        if (genre === 'tous' || item.getAttribute('data-genre') === genre) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+function searchContent() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    if (!query) return;
+
+    let results = [];
+    Object.keys(contentData).forEach(category => {
+        contentData[category].forEach(item => {
+            if (item.title.toLowerCase().includes(query)) {
+                results.push({...item, category});
             }
-        }
-
-        function playContent(title, iframeLink) {
-            const modal = document.createElement('div');
-            modal.className = 'video-modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3>${title}</h3>
-                        <button class="close-btn" onclick="closeVideoModal()">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <iframe src="${iframeLink}" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-        }
-
-        function closeVideoModal() {
-            const modal = document.querySelector('.video-modal');
-            if (modal) document.body.removeChild(modal);
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % document.querySelectorAll('.carousel-item').length;
-            document.querySelector('.carousel-inner').style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
-
-        setInterval(nextSlide, 5000);
-
-        document.querySelectorAll('.scroll-arrow').forEach(arrow => {
-            arrow.addEventListener('click', () => {
-                const direction = arrow.classList.contains('left') ? -1 : 1;
-                arrow.closest('.movie-list-container').querySelector('.movie-list').scrollBy({ 
-                    left: direction * 300, 
-                    behavior: 'smooth' 
-                });
-            });
         });
+    });
 
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') searchContent();
-        });
+    if (results.length > 0) {
+        alert(`🎉 Trouvé ${results.length} résultat(s) pour "${query}"`);
+        console.log('Résultats :', results);
+    } else {
+        alert(`Aucun résultat trouvé pour "${query}" 😔`);
+    }
+}
 
-        window.addEventListener('load', function() {
-            showSection('accueil');
-        });
-    </script>
+function playContent(title, iframeLink) {
+    if (iframeLink) {
+        createVideoModal(title, iframeLink);
+    } else {
+        alert(`Lecture indisponible pour : ${title}`);
+    }
+}
+
+function createVideoModal(title, iframeLink) {
+    const modal = document.createElement('div');
+    modal.className = 'video-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>${title}</h3>
+                <button class="close-btn" onclick="closeVideoModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe src="${iframeLink}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function closeVideoModal() {
+    const modal = document.querySelector('.video-modal');
+    if (modal) {
+        document.body.removeChild(modal);
+    }
+}
+
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        searchContent();
+    }
+});
+
+window.addEventListener('load', function() {
+    showSection('accueil');
+});
+</script>
 </body>
 </html>
