@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accès Privé CineF</title>
+    <style>
+        :root {
+            --primary: #4ecdc4;
+            --dark: #0f0f23;
+            --light: #ffffff;
+            --admin: #ff6b6b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .access-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            padding: 3rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary), #ff6b6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .instructions {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .snapchat-link {
+            display: block;
+            text-align: center;
+            background: rgba(255, 252, 0, 0.2);
+            color: #fffc00;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid rgba(255, 252, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .snapchat-link:hover {
+            background: rgba(255, 252, 0, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.3);
+        }
+        
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--primary), #45b7d1);
+            border: none;
+            border-radius: 8px;
+            color: var(--dark);
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .error {
+            color: #ff6b6b;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .admin-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--light);
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .admin-form {
+            display: none;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .admin-form.active {
+            display: block;
+        }
+        
+        .admin-btn {
+            background: linear-gradient(45deg, var(--admin), #ff8e8e) !important;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+        
+        @media (max-width: 768px) {
+            .access-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="access-container">
+        <button class="admin-toggle" onclick="toggleAdminForm()">Accès Admin</button>
+        
+        <div class="logo">CineF</div>
+        <h1>Accès Privé Exclusif</h1>
+        
+        <div class="instructions">
+            <p>Pour obtenir le code d'accès, contactez le propriétaire via Snapchat :</p>
+            
+            <a href="https://snapchat.com/t/zHdmk8t3" class="snapchat-link" target="_blank">
+                📲 Contacter sur Snapchat
+            </a>
+            
+            <p>Après avoir reçu le code PIN, entrez-le ci-dessous :</p>
+        </div>
+        
+        <div class="form-group">
+            <label for="pin">Code PIN (fourni par le propriétaire)</label>
+            <input type="password" id="pin" placeholder="Entrez le code PIN à 4 chiffres" maxlength="4" pattern="\d{4}">
+        </div>
+        
+        <button onclick="checkUserAccess()">Accéder à la plateforme</button>
+        
+        <div class="error" id="error">
+            Code PIN incorrect. Veuillez réessayer ou contacter le propriétaire.
+        </div>
+        
+        <div class="admin-form" id="adminForm">
+            <div class="form-group">
+                <label for="adminPass">Mot de passe Admin</label>
+                <input type="password" id="adminPass" placeholder="Mot de passe administrateur">
+            </div>
+            
+            <button class="admin-btn" onclick="checkAdminAccess()">Accès Admin</button>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const CONFIG = {
+            USER_PIN: "1508", // Code PIN pour les utilisateurs
+            ADMIN_PASS: "admin", // Mot de passe admin
+            REDIRECT_URL: "https://h7-216.github.io/cineF/#", // URL de redirection
+            ACCESS_KEY: "cinef_access", // Clé de stockage
+            ACCESS_DURATION: 30 // Durée d'accès en jours
+        };
+
+        // Basculer entre formulaire user/admin
+        function toggleAdminForm() {
+            const adminForm = document.getElementById('adminForm');
+            adminForm.classList.toggle('active');
+        }
+
+        // Vérifier l'accès utilisateur
+        function checkUserAccess() {
+            const pinInput = document.getElementById('pin');
+            const errorElement = document.getElementById('error');
+            
+            if (pinInput.value === CONFIG.USER_PIN) {
+                grantAccess();
+            } else {
+                showError();
+            }
+        }
+
+        // Vérifier l'accès admin
+        function checkAdminAccess() {
+            const adminPass = document.getElementById('adminPass');
+            const errorElement = document.getElementById('error');
+            
+            if (adminPass.value === CONFIG.ADMIN_PASS) {
+                grantAccess();
+            } else {
+                showError();
+            }
+        }
+
+        // Accorder l'accès
+        function grantAccess() {
+            // Enregistrer l'accès avec timestamp
+            const accessData = {
+                granted: true,
+                timestamp: new Date().getTime()
+            };
+            localStorage.setItem(CONFIG.ACCESS_KEY, JSON.stringify(accessData));
+            
+            // Redirection
+            window.location.href = CONFIG.REDIRECT_URL;
+        }
+
+        // Afficher l'erreur
+        function showError() {
+            const errorElement = document.getElementById('error');
+            errorElement.style.display = 'block';
+            
+            // Animation d'erreur
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    input.style.animation = '';
+                }, 500);
+            });
+        }
+        
+        // Vérifier au chargement si l'accès est déjà autorisé
+        function checkExistingAccess() {
+            const accessData = localStorage.getItem(CONFIG.ACCESS_KEY);
+            if (!accessData) return false;
+            
+            const { timestamp } = JSON.parse(accessData);
+            const now = new Date().getTime();
+            const elapsedDays = (now - timestamp) / (1000 * 60 * 60 * 24);
+            
+            return elapsedDays <= CONFIG.ACCESS_DURATION;
+        }
+
+        // Vérifier au chargement de la page
+        if (checkExistingAccess()) {
+            window.location.href = CONFIG.REDIRECT_URL;
+        }
+        
+        // Focus automatique sur le champ PIN
+        document.getElementById('pin').focus();
+    </script>
+</body>
+</html>
