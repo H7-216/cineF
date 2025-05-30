@@ -186,7 +186,7 @@
 </head>
 <body>
     <div class="access-container">
-        <button class="admin-toggle" onclick="toggleAdminForm()">Accès Admin</button>
+        <button class="admin-toggle" onclick="toggleAdminForm()">Accès H7</button>
         
         <div class="logo">CineF</div>
         <h1>Accès Privé Exclusif</h1>
@@ -214,11 +214,11 @@
         
         <div class="admin-form" id="adminForm">
             <div class="form-group">
-                <label for="adminPass">Mot de passe Admin</label>
-                <input type="password" id="adminPass" placeholder="Mot de passe administrateur">
+                <label for="adminPass">Mot de passe</label>
+                <input type="password" id="adminPass" placeholder="Mot de passe pour l'administrateur">
             </div>
             
-            <button class="admin-btn" onclick="checkAdminAccess()">Accès Admin</button>
+            <button class="admin-btn" onclick="checkAdminAccess()">Accès H7</button>
         </div>
     </div>
 
@@ -227,7 +227,7 @@
         const CONFIG = {
             USER_PIN: "1508", // Code PIN pour les utilisateurs
             ADMIN_PASS: "admin", // Mot de passe admin
-            REDIRECT_URL: "home.html", // URL de redirection
+            REDIRECT_URL: "home.html", // Redirection vers la page principale
             ACCESS_KEY: "cinef_access", // Clé de stockage
             ACCESS_DURATION: 30 // Durée d'accès en jours
         };
