@@ -223,26 +223,23 @@
         </div>
     </div>
 
-    <script>
-        // Configuration
+     <script>
         const CONFIG = {
-            USER_PIN: "1508", // Code PIN pour les utilisateurs
-            ADMIN_PASS: "admin", // Mot de passe admin
-            REDIRECT_URL: "home.html", // Redirection vers la page principale
-            ACCESS_KEY: "cinef_access", // Clé de stockage
-            ACCESS_DURATION: 30 // Durée d'accès en jours
+            USER_PIN: "1508",
+            ADMIN_PASS: "admin",
+            REDIRECT_URL: "home.html",
+            ACCESS_KEY: "cinef_access",
+            ACCESS_DURATION: 30,
+            TOKEN_VALIDITY: 120000 // 2 minutes en millisecondes
         };
 
-        // Basculer entre formulaire user/admin
         function toggleAdminForm() {
             const adminForm = document.getElementById('adminForm');
             adminForm.classList.toggle('active');
         }
 
-        // Vérifier l'accès utilisateur
         function checkUserAccess() {
             const pinInput = document.getElementById('pin');
-            const errorElement = document.getElementById('error');
             
             if (pinInput.value === CONFIG.USER_PIN) {
                 grantAccess();
@@ -251,10 +248,8 @@
             }
         }
 
-        // Vérifier l'accès admin
         function checkAdminAccess() {
             const adminPass = document.getElementById('adminPass');
-            const errorElement = document.getElementById('error');
             
             if (adminPass.value === CONFIG.ADMIN_PASS) {
                 grantAccess();
@@ -263,52 +258,45 @@
             }
         }
 
-        // Accorder l'accès
         function grantAccess() {
-            // Enregistrer l'accès avec timestamp
+            const token = btoa(Date.now() + "|" + Math.random().toString(36).substr(2));
+            
             const accessData = {
                 granted: true,
-                timestamp: new Date().getTime()
+                timestamp: Date.now(),
+                token: token
             };
-            localStorage.setItem(CONFIG.ACCESS_KEY, JSON.stringify(accessData));
             
-            // Redirection
-            window.location.href = CONFIG.REDIRECT_URL;
+            localStorage.setItem(CONFIG.ACCESS_KEY, JSON.stringify(accessData));
+            window.location.href = `${CONFIG.REDIRECT_URL}?token=${token}`;
         }
 
-        // Afficher l'erreur
         function showError() {
             const errorElement = document.getElementById('error');
             errorElement.style.display = 'block';
             
-            // Animation d'erreur
-            const inputs = document.querySelectorAll('input');
-            inputs.forEach(input => {
+            document.querySelectorAll('input').forEach(input => {
                 input.style.animation = 'shake 0.5s';
-                setTimeout(() => {
-                    input.style.animation = '';
-                }, 500);
+                setTimeout(() => input.style.animation = '', 500);
             });
         }
-        
-        // Vérifier au chargement si l'accès est déjà autorisé
+
         function checkExistingAccess() {
             const accessData = localStorage.getItem(CONFIG.ACCESS_KEY);
             if (!accessData) return false;
             
             const { timestamp } = JSON.parse(accessData);
-            const now = new Date().getTime();
-            const elapsedDays = (now - timestamp) / (1000 * 60 * 60 * 24);
+            const elapsedDays = (Date.now() - timestamp) / (1000 * 60 * 60 * 24);
             
             return elapsedDays <= CONFIG.ACCESS_DURATION;
         }
 
-        // Vérifier au chargement de la page
+        // Vérification au chargement
         if (checkExistingAccess()) {
-            window.location.href = CONFIG.REDIRECT_URL;
+            const storedData = JSON.parse(localStorage.getItem(CONFIG.ACCESS_KEY));
+            window.location.href = `${CONFIG.REDIRECT_URL}?token=${storedData.token}`;
         }
         
-        // Focus automatique sur le champ PIN
         document.getElementById('pin').focus();
     </script>
 </body>
