@@ -1,7 +1,0 @@
-# Empêche l'accès direct à home.html
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{REQUEST_URI} home\.html
-    RewriteCond %{HTTP_REFERER} !^https://h7-216\.github\.io/cineF/index\.html [NC]
-    RewriteRule ^ - [F,L]
-</IfModule>
