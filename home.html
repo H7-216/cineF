@@ -276,111 +276,222 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .loading-content {
+            text-align: center;
+            color: #4ecdc4;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(78, 205, 196, 0.3);
+            border-top: 3px solid #4ecdc4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
-<header class="header">
-    <nav class="nav-container">
-        <div class="logo">CineF</div>
-        <ul class="nav-menu">
-            <li><a href="#" class="nav-link" onclick="showSection('accueil')">Accueil</a></li>
-            <li><a href="#" class="nav-link" onclick="showSection('films')">Films</a></li>
-            <li><a href="#" class="nav-link" onclick="showSection('series')">Séries</a></li>
-            <li><a href="#" class="nav-link" onclick="showSection('animes')">Animés</a></li>
-            <li><a href="#" class="nav-link" onclick="showSection('documentaires')">Documentaires</a></li>
-        </ul>
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Rechercher un film, série..." id="searchInput">
-            <button class="search-btn" onclick="searchContent()">🔍</button>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Vérification de l'authentification...</p>
         </div>
-    </nav>
-</header>
+    </div>
 
-<main class="main-content">
-    <div id="accueil" class="section">
-        <div class="hero-section">
-            <h1 class="hero-title">Bienvenue sur CineF</h1>
-            <p class="hero-subtitle">Votre plateforme de streaming préférée - Films, Séries, Animés et plus encore</p>
-        </div>
+    <div id="mainContent" style="display: none;">
+        <header class="header">
+            <nav class="nav-container">
+                <div class="logo">CineF</div>
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link" onclick="showSection('accueil')">Accueil</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('films')">Films</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('series')">Séries</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('animes')">Animés</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('documentaires')">Documentaires</a></li>
+                </ul>
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Rechercher un film, série..." id="searchInput">
+                    <button class="search-btn" onclick="searchContent()">🔍</button>
+                </div>
+            </nav>
+        </header>
 
-        <div class="categories">
-            <div class="category-card" onclick="showSection('films')">
-                <span class="category-icon">🎬</span>
-                <h3 class="category-title">Films</h3>
-                <p class="category-count">Découvrez notre collection de films</p>
+        <main class="main-content">
+            <div id="accueil" class="section">
+                <div class="hero-section">
+                    <h1 class="hero-title">Bienvenue sur CineF</h1>
+                    <p class="hero-subtitle">Votre plateforme de streaming préférée - Films, Séries, Animés et plus encore</p>
+                </div>
+
+                <div class="categories">
+                    <div class="category-card" onclick="showSection('films')">
+                        <span class="category-icon">🎬</span>
+                        <h3 class="category-title">Films</h3>
+                        <p class="category-count">Découvrez notre collection de films</p>
+                    </div>
+                    <div class="category-card" onclick="showSection('series')">
+                        <span class="category-icon">📺</span>
+                        <h3 class="category-title">Séries</h3>
+                        <p class="category-count">Binge-watchez vos séries préférées</p>
+                    </div>
+                    <div class="category-card" onclick="showSection('animes')">
+                        <span class="category-icon">🎌</span>
+                        <h3 class="category-title">Animés</h3>
+                        <p class="category-count">Le meilleur de l'animation japonaise</p>
+                    </div>
+                    <div class="category-card" onclick="showSection('documentaires')">
+                        <span class="category-icon">🎥</span>
+                        <h3 class="category-title">Documentaires</h3>
+                        <p class="category-count">Explorez et apprenez</p>
+                    </div>
+                </div>
             </div>
-            <div class="category-card" onclick="showSection('series')">
-                <span class="category-icon">📺</span>
-                <h3 class="category-title">Séries</h3>
-                <p class="category-count">Binge-watchez vos séries préférées</p>
+
+            <div id="films" class="section" style="display: none;">
+                <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Films</h2>
+                <div class="genre-filter">
+                    <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
+                    <button class="genre-btn" onclick="filterContent('action')">Action</button>
+                    <button class="genre-btn" onclick="filterContent('comedie')">Comédie</button>
+                    <button class="genre-btn" onclick="filterContent('drame')">Drame</button>
+                    <button class="genre-btn" onclick="filterContent('horreur')">Horreur</button>
+                    <button class="genre-btn" onclick="filterContent('sci-fi')">Sci-Fi</button>
+                </div>
+                <div class="content-grid" id="filmsGrid"></div>
             </div>
-            <div class="category-card" onclick="showSection('animes')">
-                <span class="category-icon">🎌</span>
-                <h3 class="category-title">Animés</h3>
-                <p class="category-count">Le meilleur de l'animation japonaise</p>
+
+            <div id="series" class="section" style="display: none;">
+                <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Séries</h2>
+                <div class="genre-filter">
+                    <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
+                    <button class="genre-btn" onclick="filterContent('drame')">Drame</button>
+                    <button class="genre-btn" onclick="filterContent('comedie')">Comédie</button>
+                    <button class="genre-btn" onclick="filterContent('thriller')">Thriller</button>
+                    <button class="genre-btn" onclick="filterContent('fantastique')">Fantastique</button>
+                </div>
+                <div class="content-grid" id="seriesGrid"></div>
             </div>
-            <div class="category-card" onclick="showSection('documentaires')">
-                <span class="category-icon">🎥</span>
-                <h3 class="category-title">Documentaires</h3>
-                <p class="category-count">Explorez et apprenez</p>
+
+            <div id="animes" class="section" style="display: none;">
+                <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Animés</h2>
+                <div class="genre-filter">
+                    <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
+                    <button class="genre-btn" onclick="filterContent('shonen')">Shōnen</button>
+                    <button class="genre-btn" onclick="filterContent('seinen')">Seinen</button>
+                    <button class="genre-btn" onclick="filterContent('romance')">Romance</button>
+                    <button class="genre-btn" onclick="filterContent('mecha')">Mecha</button>
+                </div>
+                <div class="content-grid" id="animesGrid"></div>
             </div>
-        </div>
+
+            <div id="documentaires" class="section" style="display: none;">
+                <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Documentaires</h2>
+                <div class="genre-filter">
+                    <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
+                    <button class="genre-btn" onclick="filterContent('nature')">Nature</button>
+                    <button class="genre-btn" onclick="filterContent('histoire')">Histoire</button>
+                    <button class="genre-btn" onclick="filterContent('science')">Science</button>
+                    <button class="genre-btn" onclick="filterContent('biographie')">Biographie</button>
+                </div>
+                <div class="content-grid" id="documentairesGrid"></div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 CineF - Votre plateforme de streaming. Tous droits réservés.</p>
+        </footer>
     </div>
 
-    <div id="films" class="section" style="display: none;">
-        <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Films</h2>
-        <div class="genre-filter">
-            <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
-            <button class="genre-btn" onclick="filterContent('action')">Action</button>
-            <button class="genre-btn" onclick="filterContent('comedie')">Comédie</button>
-            <button class="genre-btn" onclick="filterContent('drame')">Drame</button>
-            <button class="genre-btn" onclick="filterContent('horreur')">Horreur</button>
-            <button class="genre-btn" onclick="filterContent('sci-fi')">Sci-Fi</button>
-        </div>
-        <div class="content-grid" id="filmsGrid"></div>
-    </div>
-
-    <div id="series" class="section" style="display: none;">
-        <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Séries</h2>
-        <div class="genre-filter">
-            <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
-            <button class="genre-btn" onclick="filterContent('drame')">Drame</button>
-            <button class="genre-btn" onclick="filterContent('comedie')">Comédie</button>
-            <button class="genre-btn" onclick="filterContent('thriller')">Thriller</button>
-            <button class="genre-btn" onclick="filterContent('fantastique')">Fantastique</button>
-        </div>
-        <div class="content-grid" id="seriesGrid"></div>
-    </div>
-
-    <div id="animes" class="section" style="display: none;">
-        <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Animés</h2>
-        <div class="genre-filter">
-            <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
-            <button class="genre-btn" onclick="filterContent('shonen')">Shōnen</button>
-            <button class="genre-btn" onclick="filterContent('seinen')">Seinen</button>
-            <button class="genre-btn" onclick="filterContent('romance')">Romance</button>
-            <button class="genre-btn" onclick="filterContent('mecha')">Mecha</button>
-        </div>
-        <div class="content-grid" id="animesGrid"></div>
-    </div>
-
-    <div id="documentaires" class="section" style="display: none;">
-        <h2 style="color: #4ecdc4; margin-bottom: 2rem; text-align: center;">Documentaires</h2>
-        <div class="genre-filter">
-            <button class="genre-btn active" onclick="filterContent('tous')">Tous</button>
-            <button class="genre-btn" onclick="filterContent('nature')">Nature</button>
-            <button class="genre-btn" onclick="filterContent('histoire')">Histoire</button>
-            <button class="genre-btn" onclick="filterContent('science')">Science</button>
-            <button class="genre-btn" onclick="filterContent('biographie')">Biographie</button>
-        </div>
-        <div class="content-grid" id="documentairesGrid"></div>
-    </div>
-</main>
-
-<footer class="footer">
-    <p>&copy; 2024 CineF - Votre plateforme de streaming. Tous droits réservés.</p>
-</footer>
 <script>
+const SECURITY_CONFIG = {
+    ACCESS_KEY: "cinef_access",
+    ACCESS_DURATION: 30,
+    LOGIN_URL: "index.html"
+};
+
+function checkAuthentication() {
+    try {
+        const accessData = localStorage.getItem(SECURITY_CONFIG.ACCESS_KEY);
+        if (!accessData) {
+            redirectToLogin();
+            return false;
+        }
+        
+        const { granted, timestamp } = JSON.parse(accessData);
+        if (!granted || !timestamp) {
+            redirectToLogin();
+            return false;
+        }
+        
+        const now = new Date().getTime();
+        const elapsedDays = (now - timestamp) / (1000 * 60 * 60 * 24);
+        if (elapsedDays > SECURITY_CONFIG.ACCESS_DURATION) {
+            localStorage.removeItem(SECURITY_CONFIG.ACCESS_KEY);
+            redirectToLogin();
+            return false;
+        }
+        
+        return true;
+    } catch (error) {
+        console.error("Erreur de vérification:", error);
+        redirectToLogin();
+        return false;
+    }
+}
+
+function redirectToLogin() {
+    setTimeout(() => {
+        window.location.href = SECURITY_CONFIG.LOGIN_URL;
+    }, 1000);
+}
+
+function initializeSecurePage() {
+    if (checkAuthentication()) {
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        initializeApp();
+    }
+}
+
+setInterval(() => {
+    if (!checkAuthentication()) {
+        console.log("Session expirée");
+    }
+}, 5 * 60 * 1000);
+
+let devtools = {open: false, orientation: null};
+const threshold = 160;
+
+setInterval(() => {
+    if (window.outerHeight - window.innerHeight > threshold || 
+        window.outerWidth - window.innerWidth > threshold) {
+        if (!devtools.open) {
+            devtools.open = true;
+            console.clear();
+            console.log("🔒 Accès sécurisé - Toute tentative est surveillée");
+        }
+    } else {
+        devtools.open = false;
+    }
+}, 500);
+
 const contentData = {
     films: [
         {
@@ -496,16 +607,24 @@ const contentData = {
         }
     ]
 };
+
 let currentSection = 'accueil';
 let currentFilter = 'tous';
+
+function initializeApp() {
+    showSection('accueil');
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchContent();
+        }
+    });
+}
 
 function showSection(sectionName) {
     const sections = document.querySelectorAll('.section');
     sections.forEach(section => section.style.display = 'none');
-
     document.getElementById(sectionName).style.display = 'block';
     currentSection = sectionName;
-
     if (sectionName !== 'accueil') {
         loadContent(sectionName);
     }
@@ -514,14 +633,12 @@ function showSection(sectionName) {
 function loadContent(type) {
     const grid = document.getElementById(type + 'Grid');
     const data = contentData[type] || [];
-
     grid.innerHTML = '';
 
     data.forEach(item => {
         const contentItem = document.createElement('div');
         contentItem.className = 'content-item';
         contentItem.setAttribute('data-genre', item.genre);
-
         contentItem.innerHTML = `
             <div class="content-poster">🎬</div>
             <div class="content-title">${item.title}</div>
@@ -529,7 +646,6 @@ function loadContent(type) {
                 ${item.year} • ⭐ ${item.rating}<br>Genre: ${item.genre}
             </div>
         `;
-
         contentItem.onclick = () => playContent(item.title, item.iframeLink);
         grid.appendChild(contentItem);
     });
@@ -539,10 +655,8 @@ function filterContent(genre) {
     document.querySelectorAll('.genre-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-
     event.target.classList.add('active');
     currentFilter = genre;
-
     const items = document.querySelectorAll('.content-item');
     items.forEach(item => {
         if (genre === 'tous' || item.getAttribute('data-genre') === genre) {
@@ -556,7 +670,6 @@ function filterContent(genre) {
 function searchContent() {
     const query = document.getElementById('searchInput').value.toLowerCase();
     if (!query) return;
-
     let results = [];
     Object.keys(contentData).forEach(category => {
         contentData[category].forEach(item => {
@@ -565,10 +678,9 @@ function searchContent() {
             }
         });
     });
-
     if (results.length > 0) {
         alert(`🎉 Trouvé ${results.length} résultat(s) pour "${query}"`);
-        console.log('Résultats :', results);
+        console.log('Résultats:', results);
     } else {
         alert(`Aucun résultat trouvé pour "${query}" 😔`);
     }
@@ -578,7 +690,7 @@ function playContent(title, iframeLink) {
     if (iframeLink) {
         createVideoModal(title, iframeLink);
     } else {
-        alert(`Lecture indisponible pour : ${title}`);
+        alert(`Lecture indisponible pour: ${title}`);
     }
 }
 
@@ -606,15 +718,77 @@ function closeVideoModal() {
     }
 }
 
-document.getElementById('searchInput').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        searchContent();
+function checkSessionIntegrity() {
+    if (window !== window.top) {
+        window.top.location = SECURITY_CONFIG.LOGIN_URL;
+        return false;
+    }
+    if (document.referrer && !document.referrer.includes(window.location.hostname)) {
+        console.warn("Navigation suspecte:", document.referrer);
+    }
+    return true;
+}
+
+setInterval(checkSessionIntegrity, 10000);
+
+function logout() {
+    localStorage.removeItem(SECURITY_CONFIG.ACCESS_KEY);
+    window.location.href = SECURITY_CONFIG.LOGIN_URL;
+}
+
+function addLogoutButton() {
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+        const logoutItem = document.createElement('li');
+        logoutItem.innerHTML = `<a href="#" class="nav-link" onclick="logout()">Déconnexion</a>`;
+        navMenu.appendChild(logoutItem);
+    }
+}
+
+setTimeout(addLogoutButton, 2000);
+
+let userActivity = {
+    mouseMoves: 0,
+    clicks: 0,
+    keysPressed: 0
+};
+
+document.addEventListener('mousemove', () => userActivity.mouseMoves++);
+document.addEventListener('click', () => userActivity.clicks++);
+document.addEventListener('keydown', () => userActivity.keysPressed++);
+
+setInterval(() => {
+    if (userActivity.mouseMoves === 0 && userActivity.clicks === 0 && userActivity.keysPressed === 0) {
+        console.log("Aucune activité détectée");
+    }
+    userActivity = { mouseMoves: 0, clicks: 0, keysPressed: 0 };
+}, 300000);
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'F12' || 
+        (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+        (e.ctrlKey && e.shiftKey && e.key === 'J') || 
+        (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+        alert("🔒 Accès restreint");
+        return false;
     }
 });
 
-window.addEventListener('load', function() {
-    showSection('accueil');
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert("🔒 Clic droit désactivé");
+    return false;
 });
+
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        console.log("Détection sortie d'onglet");
+    }
+});
+
+window.addEventListener('load', initializeSecurePage);
+console.log("%c🔒 Système de sécurité activé", "color: #4ecdc4; font-weight: bold;");
 </script>
 </body>
 </html>
