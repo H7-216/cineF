@@ -276,49 +276,9 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        .noscript-message {
-            background: #ff6b6b;
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            border-radius: 8px;
-            margin: 2rem auto;
-            max-width: 600px;
-        }
-        .noscript-message a {
-            color: #4ecdc4;
-            font-weight: bold;
-            text-decoration: none;
     </style>
 </head>
 <body>
-    <script>
-    const authCheck = () => {
-            const authData = localStorage.getItem("cinef_access");
-            if (!authData) return false;
-            
-            const { timestamp } = JSON.parse(authData);
-            const isExpired = (Date.now() - timestamp) > (30 * 24 * 60 * 60 * 1000);
-            
-            if (isExpired) {
-                localStorage.removeItem("cinef_access");
-                return false;
-            }
-            return true;
-        };
-
-        if (!authCheck()) {
-            window.location.href = "index.html";
-        }
-    </script>
-
-    <noscript>
-        <div class="noscript-message">
-            <h2>JavaScript requis</h2>
-            <p>Pour accéder à CineF, vous devez activer JavaScript.</p>
-            <p><a href="index.html">Retour à la page d'authentification</a></p>
-        </div>
-    </noscript>
 <header class="header">
     <nav class="nav-container">
         <div class="logo">CineF</div>
@@ -646,13 +606,15 @@ function closeVideoModal() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-            if (!authCheck()) {
-                window.location.href = "index.html";
-            } else {
-                showSection('accueil');
-            }
-        });
-    </script>
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        searchContent();
+    }
+});
+
+window.addEventListener('load', function() {
+    showSection('accueil');
+});
+</script>
 </body>
 </html>
